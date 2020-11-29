@@ -1,0 +1,17 @@
+name: C/C++ CI
+
+on: push
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: checkout repo
+      uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir build && cd build
+        cmake ..
+        make

@@ -18,15 +18,16 @@ add_executable(sportgems ${SOURCES})
 include(CTest)
 
 # Add the testing executable and add them to ctest
-add_executable(test_sort test/cpp_sorter_test.cpp include/cpp_sorter.h)
-target_link_libraries(test_sort gtest_main)
-add_test(NAME AllTestsInSorter COMMAND test_sort)
+set(testsuites generator;geo)
 
-add_executable(test_generator test/test_generator.cpp include/generator.h src/generator.cpp)
-target_link_libraries(test_generator gtest_main)
-add_test(NAME AllTestsInGenerator COMMAND test_generator)
+foreach(testsuite IN LISTS testsuites)
+    message(STATUS "configuring test suite: ${testsuite}")
+    add_executable(test_${testsuite} test/test_${testsuite}.cpp include/${testsuite}.h src/${testsuite}.cpp)
+    target_link_libraries(test_${testsuite} gtest_main)
+    add_test(NAME AllTestsIn${testsuite} COMMAND test_${testsuite})
+endforeach()
 
-add_executable(test_geo test/test_geo.cpp include/geo.h src/geo.cpp)
-target_link_libraries(test_geo gtest_main)
-add_test(NAME AllTestsInGeo COMMAND test_geo)
-
+#message(STATUS "generating test suite: sorter")
+#add_executable(test_sort test/test_sorter.cpp include/sorter.h)
+#target_link_libraries(test_sort gtest_main)
+#add_test(NAME AllTestsInSorter COMMAND test_sort)

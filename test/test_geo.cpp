@@ -3,25 +3,39 @@
 
 
 TEST(test_geo, to_rad) {
+    double result;
+    double expected;
 
-    double result1 = to_rad(180.0);
-    double expected1 = PI;
-    EXPECT_EQ(expected1, result1);
+    result = to_rad(180.0);
+    expected = PI;
+    EXPECT_EQ(expected, result);
 
-    double result2 = to_rad(90.0);
-    double expected2 = PI/2;
-    EXPECT_EQ(expected2, result2);
+    result = to_rad(90.0);
+    expected = PI/2;
+    EXPECT_EQ(expected, result);
 
-    double result3 = to_rad(263.1);
-    double expected3 = 4.591961261997081;
-    EXPECT_EQ(expected3, result3);
+    result = to_rad(263.1);
+    expected = 4.591961261997081;
+    EXPECT_EQ(expected, result);
 }
 
 TEST(test_geo, calculate_distance) {
-    std::cout << std::setprecision(13);
-    std::pair<double, double> coor1 = {48.123, 9.456};
-    std::pair<double, double> coor2 = {49.678, 9.567};
-    float result = calculate_distance(coor1, coor2);
-    float expected = 173290.67;
+    std::pair<double, double> coorA;
+    std::pair<double, double> coorB;
+    double result;
+    double expected;
+    
+    // test random distance between random coordinates
+    coorA = {48.123, 9.456};
+    coorB = {49.678, 9.567};
+    result = calculate_distance(coorA, coorB);
+    expected = 173291.22;
     ASSERT_FLOAT_EQ(expected, result);
+
+    // test distance of two coordinates with 1 meter distance
+    coorA = {48.0, 8.0};
+    coorB = {48.0, 8.0000135};
+    result = calculate_distance(coorA, coorB);
+    expected = 1.0147612213981296;
+    ASSERT_DOUBLE_EQ(expected, result);
 }

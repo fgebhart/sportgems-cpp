@@ -24,7 +24,7 @@ foreach(testsuite IN LISTS testsuites)
     message(STATUS "configuring test suite: ${testsuite}")
     add_executable(test_${testsuite} test/test_${testsuite}.cpp include/${testsuite}.h src/${testsuite}.cpp)
     target_link_libraries(test_${testsuite} gtest_main)
-    add_test(NAME AllTestsIn${testsuite} COMMAND test_${testsuite})
+    add_test(NAME tests_${testsuite} COMMAND test_${testsuite})
 endforeach()
 
 #message(STATUS "generating test suite: sorter")

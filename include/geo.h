@@ -9,6 +9,6 @@
 
 double to_rad(double degree);
 
-float calculate_distance(std::pair<double, double> const &coor1, std::pair<double, double> const &coor2);
+double calculate_distance(std::pair<double, double> const &coor1, std::pair<double, double> const &coor2);
 
 #endif

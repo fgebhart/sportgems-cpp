@@ -3,7 +3,7 @@
 #include "../include/utils.h"
 
 
-void print_vector(std::vector<std::pair<float, float>> input) {
+void print_vector(std::vector<std::pair<float, float>> const &input) {
     std::cout << "{";
     for (int i = 0; i < input.size() ; i++)
     {

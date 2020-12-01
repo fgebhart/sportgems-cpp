@@ -32,5 +32,8 @@
 *.app
 
 
-# Build directory
+# Build dir
 build/
+
+# Test cache dir
+Testing/

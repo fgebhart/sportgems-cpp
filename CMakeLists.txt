@@ -14,9 +14,19 @@ file(GLOB SOURCES
 
 add_executable(sportgems ${SOURCES})
 
-# Add the testing executable
-add_executable(test_sort test/cpp_sorter_test.cpp include/cpp_sorter.h)
-add_executable(test_generator test/test_generator.cpp include/generator.h src/generator.cpp)
+# configure tests to run with ctest
+include(CTest)
 
+# Add the testing executable and add them to ctest
+add_executable(test_sort test/cpp_sorter_test.cpp include/cpp_sorter.h)
 target_link_libraries(test_sort gtest_main)
+add_test(NAME AllTestsInSorter COMMAND test_sort)
+
+add_executable(test_generator test/test_generator.cpp include/generator.h src/generator.cpp)
 target_link_libraries(test_generator gtest_main)
+add_test(NAME AllTestsInGenerator COMMAND test_generator)
+
+add_executable(test_geo test/test_geo.cpp include/geo.h src/geo.cpp)
+target_link_libraries(test_geo gtest_main)
+add_test(NAME AllTestsInGeo COMMAND test_geo)
+

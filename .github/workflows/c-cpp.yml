@@ -23,5 +23,4 @@ jobs:
     - name: test
       run: |
         cd build
-        ./test_sort
-        ./test_generator
+        ctest . -V

@@ -10,8 +10,17 @@ jobs:
     steps:
     - name: checkout repo
       uses: actions/checkout@v2
+
+    - name: Checkout submodules
+      run: git submodule update --init --recursive
+
     - name: build
       run: |
         mkdir build && cd build
         cmake ..
         make
+
+    - name: test
+      run: |
+        cd build
+        ./test

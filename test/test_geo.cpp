@@ -38,4 +38,11 @@ TEST(test_geo, calculate_distance) {
     result = calculate_distance(coorA, coorB);
     expected = 1.0147612213981296;
     ASSERT_DOUBLE_EQ(expected, result);
+
+    // test distance of two equal coordinates
+    coorA = {48.0, 8.0};
+    coorB = {48.0, 8.0};
+    result = calculate_distance(coorA, coorB);
+    expected = 0.0;
+    ASSERT_DOUBLE_EQ(expected, result);
 }

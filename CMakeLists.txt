@@ -15,8 +15,8 @@ file(GLOB SOURCES
 add_executable(sportgems ${SOURCES})
 
 # Add the testing executable
-add_executable(test test/cpp_sorter_test.cpp include/cpp_sorter.h)
+add_executable(test_sort test/cpp_sorter_test.cpp include/cpp_sorter.h)
+add_executable(test_generator test/test_generator.cpp include/generator.h src/generator.cpp)
 
-target_link_libraries(test 
-    gtest_main 
-)
+target_link_libraries(test_sort gtest_main)
+target_link_libraries(test_generator gtest_main)

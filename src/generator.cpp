@@ -6,12 +6,7 @@
 Generator::Generator(int length, float velocity) : _length(length), _velocity(velocity) {
     _start_coordinate = {40.001, 10.0};
     int y=2020, m=1, d=1;
-    tm t = {};
-    t.tm_year = y-1900;
-    t.tm_mon  = m-1;
-    t.tm_mday = d;
-    std::mktime(&t);
-    _start_time = t;
+    _start_time = 1;
 }
 
 void Generator::generate_track() {
@@ -26,9 +21,8 @@ void Generator::generate_track() {
         _coordinates.push_back(new_coor);
 
         // adding new time
-        tm last_time = _times.back();
-        AddTime(&last_time, _velocity);
-        _times.push_back(last_time);
+        int last_time = _times.back();
+        _times.push_back(last_time + _velocity);
     }
     
 }
@@ -37,7 +31,7 @@ std::vector<std::pair<float, float>> Generator::get_coordinates() {
     return _coordinates;
 }
 
-std::vector<tm> Generator::get_times() {
+std::vector<int> Generator::get_times() {
     return _times;
 }
 
@@ -48,18 +42,9 @@ void AddTime(tm* date, double seconds) {
 }
 
 void Generator::print_track() {
-    std::cout << "coordinates    times  " << std::endl;
-    // for (int i = 0; i < coordinates.size() ; i++)
-    // {
-    //     std::cout << "(" << coordinates.at(i).first << ", " << coordinates.at(i).second << ")";
-    //     if (i != coordinates.size() -1 )
-    //     {
-    //         std::cout << ", ";
-    //     }
-        
-    // }
+    std::cout << "times coordinates" << std::endl;
     for (int i = 0; i < _times.size(); i++)
     {
-        std::cout << "(" << _coordinates.at(i).first << ", " << _coordinates.at(i).second << ");  " << asctime(&(_times[i]));
+        std::cout << _times[i] << "     (" << _coordinates.at(i).first << ", " << _coordinates.at(i).second << ")" << std::endl;
     }
 }

@@ -2,8 +2,6 @@
 #define GENERATOR_H
 
 #include <vector>
-#include <utility>
-#include <ctime>
 #include <string>
 
 class Generator {
@@ -13,7 +11,7 @@ class Generator {
 
         // getter / setter
         std::vector<std::pair<float, float>> get_coordinates();
-        std::vector<tm> get_times();
+        std::vector<int> get_times();
 
         // other methods
         void generate_track();
@@ -24,10 +22,8 @@ class Generator {
         float _velocity;
         std::vector<std::pair<float, float>> _coordinates;
         std::pair<float, float> _start_coordinate;
-        std::vector<tm> _times;
-        tm _start_time;
+        std::vector<int> _times;
+        int _start_time;
 };
-
-void AddTime(tm* date, double seconds);
 
 #endif

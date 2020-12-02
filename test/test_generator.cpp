@@ -15,3 +15,16 @@ TEST(test_generator, verify_coordinates) {
         ASSERT_NEAR(expected_vec[i].second, result_vec[i].second, 0.00001);
     }
 }
+
+TEST(test_generator, verify_times) {
+    Generator gen(3, 2.0);
+    gen.generate_track();
+    std::vector<int> result_vec = gen.get_times();
+    std::vector<int> expected_vec = {1, 3, 5};
+
+    ASSERT_EQ(expected_vec.size(), result_vec.size()) << "Vectors expected_vec and result_vec are of unequal length";
+
+    for (int i = 0; i < result_vec.size(); ++i) {
+        EXPECT_EQ(expected_vec[i], result_vec[i]);
+    }
+}

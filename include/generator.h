@@ -9,29 +9,25 @@
 class Generator {
     public:
         // constructor
-        Generator();
+        Generator(int length, float velocity);
 
         // getter / setter
-        void set_start_coordinate(std::pair<float, float> start_coordinate);
-        void set_start_time(tm start_time);
-        void set_velocity(double velocity);
-        std::pair<float, float> const get_start_coordinate();
-        tm const get_start_time();
-        std::string const get_start_time_string();
-        double const get_velocity();
+        std::vector<std::pair<float, float>> get_coordinates();
+        std::vector<tm> get_times();
 
         // other methods
-        void generate_track(int length);
-        std::vector<std::pair<float, float>> get_coordinates();
+        void generate_track();
+        void print_track();
     
     private:
         int _length;
+        float _velocity;
         std::vector<std::pair<float, float>> _coordinates;
         std::pair<float, float> _start_coordinate;
         std::vector<tm> _times;
         tm _start_time;
-        double _velocity;
 };
 
+void AddTime(tm* date, double seconds);
 
 #endif

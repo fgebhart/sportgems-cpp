@@ -8,9 +8,12 @@
 int main() {
     std::cout << "Hello World!" << "\n";
 
-    Generator gen(3);
+    Generator gen;
     auto myVec = gen.get_coordinates();
     print_vector(myVec);
+
+    std::string mytime = gen.get_start_time_string();
+    std::cout << "mytime: " << mytime << std::endl;
 
     std::pair<double, double> coor1 = {48.0, 8.0};
     std::pair<double, double> coor2 = {48.0, 8.0000134};

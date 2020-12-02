@@ -3,7 +3,7 @@
 
 
 TEST(test_generator, generate_vector) {
-    Generator gen(3);
+    Generator gen;
     std::vector<std::pair<float, float>> result_vec = gen.get_coordinates();
     std::vector<std::pair<float, float>> expected_vec = {{48.123, 9.456}, {49.678, 9.567}};
 

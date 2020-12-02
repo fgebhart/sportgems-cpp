@@ -11,8 +11,7 @@ TEST(test_generator, verify_coordinates) {
     ASSERT_EQ(expected_vec.size(), result_vec.size()) << "Vectors expected_vec and result_vec are of unequal length";
 
     for (int i = 0; i < result_vec.size(); ++i) {
-        ASSERT_NEAR(expected_vec[i].first, result_vec[i].first, 0.001);
-        ASSERT_NEAR(expected_vec[i].second, result_vec[i].second, 0.001);
+        ASSERT_NEAR(expected_vec[i].first, result_vec[i].first, 0.00001);
+        ASSERT_NEAR(expected_vec[i].second, result_vec[i].second, 0.00001);
     }
 }
-

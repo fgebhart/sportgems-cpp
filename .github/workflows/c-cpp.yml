@@ -24,3 +24,8 @@ jobs:
       run: |
         cd build
         ctest . -V
+
+    - name: run
+      run: |
+        cd build
+        ./sportgems

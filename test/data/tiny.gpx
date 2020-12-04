@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx creator="Fabian Gebhart" version="1.1" xmlns="http://www.topografix.com/GPX/1/1"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd"
+xmlns:gpxtpx="http://www.garmin.com/xmlschemas/TrackPointExtension/v1"
+xmlns:gpxtrkx="http://www.garmin.com/xmlschemas/TrackStatsExtension/v1"
+xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3">
+    <metadata>
+        <time>2020-11-29T07:28:07Z</time>
+        <link href="https://github.com/fgebhart/workoutizer">
+            <text>Workoutizer</text>
+        </link>
+    </metadata>
+    <trk>
+        <name>Dummy Test Track Tiny</name>
+            <type>Running</type>
+        <trkseg>
+            <trkpt lat="49.479509079828865" lon="8.471126942133905">
+                <time>2020-11-29T12:00:01Z</time>
+                <ele>321.2</ele>
+            </trkpt>
+            <trkpt lat="49.479609079828865" lon="8.471226942133905">
+                <time>2020-11-29T12:00:05Z</time>
+                <ele>321.3</ele>
+            </trkpt>
+            <trkpt lat="49.479709079828865" lon="8.471326942133905">
+                <time>2020-11-29T12:00:09Z</time>
+                <ele>321.5</ele>
+            </trkpt>
+        </trkseg>
+    </trk>
+</gpx>

@@ -53,6 +53,14 @@
         "stdexcept": "cpp",
         "streambuf": "cpp",
         "typeinfo": "cpp",
-        "variant": "cpp"
-    }
+        "variant": "cpp",
+        "bitset": "cpp",
+        "cstring": "cpp",
+        "regex": "cpp",
+        "codecvt": "cpp"
+    },
+    "cSpell.ignoreWords": [
+        "trkpt",
+        "trkseg"
+    ]
 }

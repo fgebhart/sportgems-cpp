@@ -28,4 +28,4 @@ jobs:
     - name: run
       run: |
         cd build
-        ./sportgems ../test/data/2020-11-29_running.gpx
+        ./sportgems ../test/data/tiny.gpx

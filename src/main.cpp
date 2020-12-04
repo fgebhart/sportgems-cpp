@@ -29,7 +29,7 @@ int main(int argc, char* argv[]) {
 
     std::string path_to_gpx = argv[1];
     // Print the user's name:
-    std::cout << "Hi 👋 from " << argv[0] << "! Will parse " << path_to_gpx << std::endl;
+    std::cout << "Hi 👋 from " << argv[0] << "! Will search for 💎 in " << path_to_gpx << std::endl;
 
     XMLParser xml_parser(path_to_gpx);
     Track track = xml_parser.parse_file();

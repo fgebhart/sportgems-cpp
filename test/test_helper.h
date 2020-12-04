@@ -9,37 +9,35 @@
 #include "gtest/gtest.h"
 
 
-#define EPSILON std::numeric_limits<double>::epsilon()
+void ASSERT_TIMES_VEC_EQ(Times const &expected_t, Times const result_t) {
+    ASSERT_EQ(expected_t.size(), result_t.size()) << "times vectors are of unequal length";
 
-bool AreSame(double a, double b)
-{
-    bool result = abs(a - b) < EPSILON;
-    std::cout << "a: " << a << ", b: " << b << ", Epsilon: " << EPSILON << ", result: " << result << std::endl;
-    return result;
-}
-
-void ASSERT_TIMES_VEC_EQ(Times const &times_a, Times const times_b) {
-    ASSERT_EQ(times_a.size(), times_b.size()) << "times vectors are of unequal length";
-
-    for (int i = 0; i < times_b.size(); ++i) {
-        EXPECT_EQ(times_a[i], times_b[i]);
+    for (int i = 0; i < result_t.size(); ++i) {
+        EXPECT_EQ(expected_t[i], result_t[i]);
     }
 }
 
-void ASSERT_ELEVATION_VEC_EQ(Elevation const &elevation_a, Elevation const elevation_b) {
-    ASSERT_EQ(elevation_a.size(), elevation_b.size()) << "elevation vectors are of unequal length";
+void ASSERT_ELEVATION_VEC_EQ(Elevation const &expected_e, Elevation const result_e) {
+    ASSERT_EQ(expected_e.size(), result_e.size()) << "elevation vectors are of unequal length";
 
-    for (int i = 0; i < elevation_b.size(); ++i) {
-        ASSERT_NEAR(elevation_a[i], elevation_b[i], 0.001);
+    for (int i = 0; i < result_e.size(); ++i) {
+        ASSERT_NEAR(expected_e[i], result_e[i], 0.0001);
     }
 }
 
-void ASSERT_COORDINATES_VEC_EQ(Coordinates const &coordinates_a, Coordinates const &coordinates_b) {
-    ASSERT_EQ(coordinates_a.size(), coordinates_b.size()) << "coordinates are of unequal length";
+void ASSERT_COORDINATES_VEC_EQ(Coordinates const &expected_c, Coordinates const &result_c) {
+    ASSERT_EQ(expected_c.size(), result_c.size()) << "coordinates are of unequal length";
 
-    for (int i = 0; i < coordinates_b.size(); ++i) {
-        ASSERT_NEAR(coordinates_a[i].first, coordinates_b[i].first, 0.0001);
-        ASSERT_NEAR(coordinates_a[i].second, coordinates_b[i].second, 0.0001);
+    for (int i = 0; i < result_c.size(); ++i) {
+        ASSERT_NEAR(expected_c[i].first, result_c[i].first, 0.0001);
+        ASSERT_NEAR(expected_c[i].second, result_c[i].second, 0.0001);
     }
 }
+
+void ASSERT_TRACK_EQ(Track const &expected_track, Track const &result_track) {
+    ASSERT_COORDINATES_VEC_EQ(expected_track.coordinates, result_track.coordinates);
+    ASSERT_TIMES_VEC_EQ(expected_track.times, result_track.times);
+    ASSERT_ELEVATION_VEC_EQ(expected_track.elevation, result_track.elevation);
+}
+
 #endif

@@ -17,7 +17,7 @@ class Generator {
         Times get_times();
 
         // other methods
-        void generate_track();
+        Track generate_track();
         void print_track();
     
     private:
@@ -27,6 +27,8 @@ class Generator {
         Coordinate _start_coordinate;
         Times _times;
         int _start_time;
+        Elevation _elevation;
+        float _start_elevation;
 };
 
 #endif

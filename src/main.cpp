@@ -32,7 +32,13 @@ int main(int argc, char* argv[]) {
     std::cout << "Hi 👋 from " << argv[0] << "! Will parse " << path_to_gpx << std::endl;
 
     XMLParser xml_parser(path_to_gpx);
-    xml_parser.parse_file();
+    Track track = xml_parser.parse_file();
     
+    for (int i = 0; i < track.coordinates.size(); i++)
+    {
+        // std::cout << "coordinates: " << _coordinates[i] << std::endl;
+        std::cout << "times: " << track.times[i] << std::endl;
+        std::cout << "elevation: " << track.elevation[i] << std::endl;
+    }
     return 0;
 }

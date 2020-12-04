@@ -55,7 +55,7 @@ bool string_starts_with(std::string const &main_string, std::string const starti
     
 }
 
-void XMLParser::parse_file() {
+Track XMLParser::parse_file() {
     bool in_track_segment;
     std::string token;
     std::ifstream filestream(_path_to_file);
@@ -80,6 +80,8 @@ void XMLParser::parse_file() {
         assert(_times.size() == _elevation.size());
         assert(_times.size() == _coordinates.size());
     }
+    Track track(_coordinates, _times, _elevation);
+    return track;
 }
 
 void XMLParser::add_time_to_vector(std::string const &input) {

@@ -22,7 +22,7 @@ set(testsuites generator;geo;parser)
 
 foreach(testsuite IN LISTS testsuites)
     message(STATUS "configuring test suite: ${testsuite}")
-    add_executable(test_${testsuite} test/test_${testsuite}.cpp include/${testsuite}.h src/${testsuite}.cpp)
+    add_executable(test_${testsuite} test/test_${testsuite}.cpp include/${testsuite}.h src/${testsuite}.cpp test/test_helper.h)
     target_link_libraries(test_${testsuite} gtest_main)
     add_test(NAME tests_${testsuite} COMMAND test_${testsuite})
 endforeach()

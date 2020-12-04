@@ -34,12 +34,12 @@ class XMLParser {
         XMLParser(std::string path_to_file);
 
         // methods
-        void parse_file();
+        Track parse_file();
+
+    private:
         void add_time_to_vector(std::string const &input);
         void add_coordinates_to_vector(std::string const &input);
         void add_elevation_to_vector(std::string const &input);
-
-    private:
         std::string _path_to_file;
         Coordinates _coordinates;
         Times _times;

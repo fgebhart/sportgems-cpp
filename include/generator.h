@@ -4,14 +4,17 @@
 #include <vector>
 #include <string>
 
+#include "types.h"
+
+
 class Generator {
     public:
         // constructor
         Generator(int length, float velocity);
 
         // getter / setter
-        std::vector<std::pair<float, float>> get_coordinates();
-        std::vector<int> get_times();
+        Coordinates get_coordinates();
+        Times get_times();
 
         // other methods
         void generate_track();
@@ -20,9 +23,9 @@ class Generator {
     private:
         int _length;
         float _velocity;
-        std::vector<std::pair<float, float>> _coordinates;
-        std::pair<float, float> _start_coordinate;
-        std::vector<int> _times;
+        Coordinates _coordinates;
+        Coordinate _start_coordinate;
+        Times _times;
         int _start_time;
 };
 

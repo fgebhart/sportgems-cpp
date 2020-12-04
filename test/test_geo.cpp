@@ -20,8 +20,8 @@ TEST(test_geo, to_rad) {
 }
 
 TEST(test_geo, calculate_distance) {
-    std::pair<double, double> coorA;
-    std::pair<double, double> coorB;
+    Coordinate coorA;
+    Coordinate coorB;
     double result;
     double expected;
     
@@ -36,7 +36,7 @@ TEST(test_geo, calculate_distance) {
     coorA = {48.0, 8.0};
     coorB = {48.0, 8.0000135};
     result = calculate_distance(coorA, coorB);
-    expected = 1.0147612213981296;
+    expected = 1.00132008196518;
     ASSERT_DOUBLE_EQ(expected, result);
 
     // test distance of two equal coordinates

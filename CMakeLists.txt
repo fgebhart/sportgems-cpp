@@ -18,7 +18,7 @@ add_subdirectory(thirdparty/googletest)
 include(CTest)
 
 # Add the testing executable and add them to ctest
-set(testsuites generator;geo;convert)
+set(testsuites generator;geo;parser)
 
 foreach(testsuite IN LISTS testsuites)
     message(STATUS "configuring test suite: ${testsuite}")

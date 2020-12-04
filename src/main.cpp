@@ -21,8 +21,8 @@ int main(int argc, char* argv[]) {
     gen.generate_track();
     gen.print_track();
 
-    std::pair<double, double> coor1 = {48.0, 8.0};
-    std::pair<double, double> coor2 = {48.0, 8.0000134};
+    Coordinate coor1 = {48.0, 8.0};
+    Coordinate coor2 = {48.0, 8.0000134};
     double distance = calculate_distance(coor1, coor2);
     std::cout << "my distance: " << distance << std::endl;
 

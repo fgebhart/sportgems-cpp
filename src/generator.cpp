@@ -16,8 +16,8 @@ void Generator::generate_track() {
     for (int i = 0; i < _length - 1; i++)
     {
         // adding new coordinate
-        std::pair<float, float> last_coor = _coordinates.back();
-        std::pair<float, float> new_coor = {last_coor.first + coor_increment, last_coor.second};
+        Coordinate last_coor = _coordinates.back();
+        Coordinate new_coor = {last_coor.first + coor_increment, last_coor.second};
         _coordinates.push_back(new_coor);
 
         // adding new time
@@ -27,18 +27,12 @@ void Generator::generate_track() {
     
 }
 
-std::vector<std::pair<float, float>> Generator::get_coordinates() {
+Coordinates Generator::get_coordinates() {
     return _coordinates;
 }
 
-std::vector<int> Generator::get_times() {
+Times Generator::get_times() {
     return _times;
-}
-
-void AddTime(tm* date, double seconds) {
-    if (date == NULL) return;
-    date->tm_sec += seconds;
-    mktime(date);
 }
 
 void Generator::print_track() {

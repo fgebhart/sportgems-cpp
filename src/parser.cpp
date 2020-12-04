@@ -1,17 +1,17 @@
-#include <locale>
-#include <codecvt>
-#include <iostream>
-#include <cassert>
-#include <string>
-#include <sstream>
-#include <vector>
-#include <iterator>
-
 #include "../include/parser.h"
-#include "../include/convert.h"
 
 
 XMLParser::XMLParser(std::string path_to_file) : _path_to_file(path_to_file) {}
+
+// convert utc time string to an int timestamp (number of seconds since posix epoch)
+int get_epoch_ime(const std::wstring &date_time)
+{
+    static const std::wstring dateTimeFormat{ L"%Y-%m-%dT%H:%M:%SZ" };
+    std::wistringstream ss{ date_time };
+    std::tm dt;
+    ss >> std::get_time(&dt, dateTimeFormat.c_str());
+    return std::mktime(&dt);
+}
 
 template <typename Out>
 void split(std::string const &s, char delim, Out result) {
@@ -28,8 +28,7 @@ std::vector<std::string> split(std::string const &s, char delim) {
     return elems;
 }
 
-std::string remove_substring(std::string main_string, std::string const &to_remove)
-{
+std::string remove_substring(std::string main_string, std::string const &to_remove) {
     // Search for the substring in string
     size_t pos = main_string.find(to_remove);
     if (pos != std::string::npos)
@@ -84,25 +83,21 @@ void XMLParser::parse_file() {
 }
 
 void XMLParser::add_time_to_vector(std::string const &input) {
-    std::cout << "time: " << input << std::endl;
     std::wstring time = std::wstring_convert<std::codecvt_utf8<wchar_t>>().from_bytes(remove_substring(input, "time>"));
     _times.push_back(get_epoch_ime(time));
 }
 
 void XMLParser::add_coordinates_to_vector(std::string const &input) {
-    std::cout << "trkpt: " << input << std::endl;
     std::vector<std::string> lat_and_lon = split(input, ' ');
-    std::pair<float, float> coordinate;
+    Coordinate coordinate;
     for (int i = 0; i < lat_and_lon.size() ; i++) {
         float lat, lon = 0;
         if (string_starts_with(lat_and_lon[i], "lat")) {
             std::string s = remove_substring(remove_substring(lat_and_lon[i], "lat="), ">");
             lat = ::atof(remove_quotes(s).c_str());
-            std::cout << "lat: " << lat << std::endl;
         } else if (string_starts_with(lat_and_lon[i], "lon")) {
             std::string s = remove_substring(remove_substring(lat_and_lon[i], "lon="), ">");
             lon = ::atof(remove_quotes(s).c_str());
-            std::cout << "lon: " << lon << std::endl;
         } else { 
             // neither lat nor lon found in string - do nothing
         }
@@ -116,6 +111,5 @@ void XMLParser::add_coordinates_to_vector(std::string const &input) {
 
 void XMLParser::add_elevation_to_vector(std::string const &input) {
     float elevation = ::atof(remove_substring(input, "ele>").c_str());
-    std::cout << "elevation: " << elevation << std::endl;
     _elevation.push_back(elevation);
 }

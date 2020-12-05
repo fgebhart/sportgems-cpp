@@ -11,18 +11,26 @@ file(GLOB SOURCES
 )
 add_executable(sportgems ${SOURCES})
 
-# Add the GoogleTest library subdirectory
+## Add the GoogleTest library subdirectory
 add_subdirectory(thirdparty/googletest)
 
 # configure tests to run with ctest
 include(CTest)
 
-# Add the testing executable and add them to ctest
-set(testsuites generator;geo;parser)
+# configure test_geo
+message(STATUS "configuring test suite: test_geo")
+add_executable(test_geo test/test_geo.cpp src/geo.cpp)
+target_link_libraries(test_geo gtest_main)
+add_test(NAME tests_geo COMMAND test_geo)
 
-foreach(testsuite IN LISTS testsuites)
-    message(STATUS "configuring test suite: ${testsuite}")
-    add_executable(test_${testsuite} test/test_${testsuite}.cpp include/${testsuite}.h src/${testsuite}.cpp test/test_helper.h)
-    target_link_libraries(test_${testsuite} gtest_main)
-    add_test(NAME tests_${testsuite} COMMAND test_${testsuite})
-endforeach()
+# configure test_parser
+message(STATUS "configuring test suite: test_parser")
+add_executable(test_parser test/test_parser.cpp src/parser.cpp src/types.cpp)
+target_link_libraries(test_parser gtest_main)
+add_test(NAME tests_parser COMMAND test_parser)
+
+# configure test_generator
+message(STATUS "configuring test suite: test_generator")
+add_executable(test_generator test/test_generator.cpp src/generator.cpp src/types.cpp)
+target_link_libraries(test_generator gtest_main)
+add_test(NAME tests_generator COMMAND test_generator)

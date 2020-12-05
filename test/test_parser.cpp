@@ -10,9 +10,9 @@ TEST(test_parser, parse_file) {
     Coordinates expected_c = {{49.4795, 8.4711}, {49.4796, 8.4712}, {49.4797, 8.4713}};
     Times expected_t = {1606651201, 1606651205, 1606651209};
     Elevation expected_e = {321.2, 321.3, 321.5};
-    Track expected_track(expected_c, expected_t, expected_e);
+    Segment expected_track(expected_c, expected_t, expected_e);
 
-    ASSERT_TRACK_EQ(expected_track, result_track);
+    ASSERT_SEGMENT_EQ(expected_track, result_track);
 }
 
 TEST(test_parser, string_to_seconds_convert) {

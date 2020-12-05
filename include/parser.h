@@ -34,7 +34,7 @@ class XMLParser {
         XMLParser(std::string path_to_file);
 
         // methods
-        Track parse_file();
+        Segment parse_file();
 
     private:
         void add_time_to_vector(std::string const &input);

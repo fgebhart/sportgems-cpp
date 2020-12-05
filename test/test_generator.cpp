@@ -3,14 +3,25 @@
 #include "gtest/gtest.h"
 
 
-TEST(test_generator, generate_track) {
-    Generator gen(3, 2.0);
-    Track result_track = gen.generate_track();
+TEST(test_generator, generate_single_segment) {
+    Generator gen;
+    Segment result_seg = gen.generate_segment(3, 2.0);
 
-    Coordinates expected_c = {{40.001, 10}, {40.003, 10}, {40.005, 10}};
-    Times expected_t = {1, 3, 5};
-    Elevation expected_e = {100.001, 100.003, 100.005};
-    Track expected_track(expected_c, expected_t, expected_e);
+    Coordinates expected_c = {{40.002, 10}, {40.004, 10}, {40.006, 10}};
+    Times expected_t = {2, 4, 6};
+    Elevation expected_e = {100.02, 100.04, 100.06};
+    Segment expected_seg(expected_c, expected_t, expected_e);
 
-    ASSERT_TRACK_EQ(expected_track, result_track);
+    ASSERT_SEGMENT_EQ(expected_seg, result_seg);
+}
+
+TEST(test_generator, generate_entire_track) {
+    Segment result_track = generate_track({1, 2, 3}, {1.0, 2.0, 3.0});
+
+    Coordinates expected_c = {{40.002, 10}, {40.004, 10}, {40.006, 10}, {40.009, 10}, {40.012, 10}, {40.015, 10}};
+    Times expected_t = {2, 4, 6, 9, 12, 15};
+    Elevation expected_e = {100.011, 100.031, 100.051, 100.081, 100.111, 100.141};
+    Segment expected_track(expected_c, expected_t, expected_e);
+
+    ASSERT_SEGMENT_EQ(expected_track, result_track);
 }

@@ -34,7 +34,7 @@ void ASSERT_COORDINATES_VEC_EQ(Coordinates const &expected_c, Coordinates const 
     }
 }
 
-void ASSERT_TRACK_EQ(Track const &expected_track, Track const &result_track) {
+void ASSERT_SEGMENT_EQ(Segment const &expected_track, Segment const &result_track) {
     ASSERT_COORDINATES_VEC_EQ(expected_track.coordinates, result_track.coordinates);
     ASSERT_TIMES_VEC_EQ(expected_track.times, result_track.times);
     ASSERT_ELEVATION_VEC_EQ(expected_track.elevation, result_track.elevation);

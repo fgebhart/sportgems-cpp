@@ -20,10 +20,7 @@ int main(int argc, char* argv[]) {
     // XML parser
     XMLParser xml_parser(path_to_gpx);
     Segment output = xml_parser.parse_file();
-
-    // Generate entire Track consisting of multiple segments
-    Segment track = generate_track({10, 10, 10}, {1.0, 5.0, 10.0});
-    print_segment(track);
+    print_segment(output);
 
     return 0;
 }

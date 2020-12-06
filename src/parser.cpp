@@ -74,9 +74,6 @@ Segment XMLParser::parse_file() {
                 }
             }
         }
-        std::cout << "size of times: " << _times.size() << 
-        ", size of ele: " << _elevation.size() << 
-        ", size of coor: " << _coordinates.size() << std::endl;
         assert(_times.size() == _elevation.size());
         assert(_times.size() == _coordinates.size());
     }

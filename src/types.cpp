@@ -42,3 +42,14 @@ void print_segment(Segment const &segment) {
                   << segment.elevation.at(i) << std::endl;
     }
 }
+
+void print_results(Results const &res) {
+    std::cout << "========================== Results ==========================" << std::endl;
+    std::cout << "Found following start- and end-indexes of fastest corridors: " << std::endl;
+    for(auto elem : res) {
+       std::cout
+       << "Fastest " << elem.first
+       << "km: Start: " << elem.second.first
+       << ", End: " << elem.second.second << std::endl;
+    }
+}

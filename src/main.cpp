@@ -23,7 +23,10 @@ int main(int argc, char* argv[]) {
     Segment output = xml_parser.parse_file();
 
     // find gems in track
-    find_gems(output);
-
+    Results results = find_gems(output);
+    if (!results.empty()) {
+        print_results(results);
+    }
+    
     return 0;
 }

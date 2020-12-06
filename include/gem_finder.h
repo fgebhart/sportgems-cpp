@@ -2,12 +2,17 @@
 #define GEM_FINDER_H
 
 #include <cassert>
+#include <algorithm>
 
 #include "../include/types.h"
 #include "../include/geo.h"
 
-void find_gems(const Segment& seg, const std::vector<int>& fastest = {1, 2, 3, 5, 10, 15, 20});
+Results find_gems(Segment& seg, std::vector<int> fastest = {1000, 2000, 3000, 5000, 10000, 15000, 20000});
+
+std::pair<int, int> search_corridor(const Segment& seg, const int fastest);
 
 Distances get_vector_of_distances(const Coordinates& coordinates);
+
+std::vector<int> convert_vector_to_meter(const std::vector<int> &input);
 
 #endif

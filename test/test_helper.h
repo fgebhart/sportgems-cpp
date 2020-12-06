@@ -17,7 +17,7 @@ void ASSERT_TIMES_VEC_EQ(Times const &expected_t, Times const result_t) {
     }
 }
 
-void ASSERT_ELEVATION_VEC_EQ(Elevation const &expected_e, Elevation const result_e) {
+void ASSERT_VEC_OF_FLOATS_EQ(Elevation const &expected_e, Elevation const result_e) {
     ASSERT_EQ(expected_e.size(), result_e.size()) << "elevation vectors are of unequal length";
 
     for (int i = 0; i < result_e.size(); ++i) {
@@ -37,7 +37,7 @@ void ASSERT_COORDINATES_VEC_EQ(Coordinates const &expected_c, Coordinates const 
 void ASSERT_SEGMENT_EQ(Segment const &expected_track, Segment const &result_track) {
     ASSERT_COORDINATES_VEC_EQ(expected_track.coordinates, result_track.coordinates);
     ASSERT_TIMES_VEC_EQ(expected_track.times, result_track.times);
-    ASSERT_ELEVATION_VEC_EQ(expected_track.elevation, result_track.elevation);
+    ASSERT_VEC_OF_FLOATS_EQ(expected_track.elevation, result_track.elevation);
 }
 
 #endif

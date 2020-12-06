@@ -3,11 +3,13 @@
 
 #include <vector>
 #include <utility>
+#include <iostream>
 
 typedef std::vector<int> Times;
 typedef std::vector<std::pair<float, float>> Coordinates;
 typedef std::pair<float, float> Coordinate;
 typedef std::vector<float> Elevation;
+typedef std::vector<float> Distances;
 
 Times operator+(Times& v1, const Times& v2);
 Elevation operator+(Elevation& e1, const Elevation& e2);
@@ -22,6 +24,7 @@ struct Segment {
     Times times;
     Coordinates coordinates;
     Elevation elevation;
+    Distances distances;
     int start_time = 1;
     int end_time = 1;
     Coordinate start_coordinate = {40.001, 10.0};
@@ -31,5 +34,7 @@ struct Segment {
 };
 
 Segment operator+(Segment &seg1, Segment &seg2);
+
+void print_segment(Segment const &segment);
 
 #endif

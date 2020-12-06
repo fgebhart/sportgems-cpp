@@ -32,3 +32,13 @@ Segment operator+(Segment &seg1, Segment &seg2) {
     Segment summed_seg(coordinates_sum, times_sum, elevation_sum);
     return summed_seg;
 };
+
+void print_segment(Segment const &segment) {
+    std::cout << "time coordinates elevation" << std::endl;
+    for (int i = 0; i < segment.times.size(); i++) {
+        std::cout << segment.times[i] << "    ("
+                  << segment.coordinates.at(i).first << "|"
+                  << segment.coordinates.at(i).second << ") "
+                  << segment.elevation.at(i) << std::endl;
+    }
+}

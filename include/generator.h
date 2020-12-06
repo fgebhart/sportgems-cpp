@@ -24,7 +24,6 @@ class Generator {
 
 Segment generate_track(std::vector<float> length_list, std::vector<float> velocity_list);
 
-void print_segment(Segment const &segment);
 
 
 #endif

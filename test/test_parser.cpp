@@ -7,7 +7,7 @@ TEST(test_parser, parse_file) {
     XMLParser parser("../test/data/tiny.gpx");
     auto result_track = parser.parse_file();
     
-    Coordinates expected_c = {{49.4795, 8.4711}, {49.4796, 8.4712}, {49.4797, 8.4713}};
+    Coordinates expected_c = {{49.4, 8.5}, {49.4, 8.6}, {49.4, 8.7}};
     Times expected_t = {1606651201, 1606651205, 1606651209};
     Elevation expected_e = {321.2, 321.3, 321.5};
     Segment expected_track(expected_c, expected_t, expected_e);

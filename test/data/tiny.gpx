@@ -15,15 +15,15 @@ xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3">
         <name>Dummy Test Track Tiny</name>
             <type>Running</type>
         <trkseg>
-            <trkpt lat="49.479509079828865" lon="8.471126942133905">
+            <trkpt lat="49.4" lon="8.5">
                 <time>2020-11-29T12:00:01Z</time>
                 <ele>321.2</ele>
             </trkpt>
-            <trkpt lat="49.479609079828865" lon="8.471226942133905">
+            <trkpt lat="49.4" lon="8.6">
                 <time>2020-11-29T12:00:05Z</time>
                 <ele>321.3</ele>
             </trkpt>
-            <trkpt lat="49.479709079828865" lon="8.471326942133905">
+            <trkpt lat="49.4" lon="8.7">
                 <time>2020-11-29T12:00:09Z</time>
                 <ele>321.5</ele>
             </trkpt>

@@ -8,22 +8,11 @@ Results find_gems(Segment& seg, std::vector<int> fastest) {
     int minimal_fastest = *std::min_element(fastest.begin(), fastest.end());
     seg.distances = get_vector_of_distances(seg.coordinates);
     float total_distance = seg.distances.back();
-    if (minimal_fastest > total_distance) {
-        std::cerr << "Input track has a total distance of " << total_distance
-        << "km, which is less than the minimal fastest item of " << minimal_fastest / 1000
-        << "km, thus cannot find any 💎 in this track." << std::endl;
-        throw std::logic_error("Input Error");
-    }
     Results results;
     print_segment(seg);
-    // check which fastest is larger than the total distance and remove if so
-    for (auto it=fastest.begin(); it!=fastest.end();) {
-        if (*it > total_distance) {
-            fastest.erase(it);
-        } else { ++it; }
-    }
+    remove_fastest_if_longer_than_total_distance(fastest, total_distance);
     if (fastest.size() > 0) {
-        std::cout << "Input track is " << total_distance / 1000.0 << "km long. Searching for fastest ";
+        std::cout << "Input track is " << total_distance / 1000.0 << "km long - searching for fastest ";
         for (int i = 0; i < fastest.size(); i++) {
             if (i == fastest.size() - 1) {
                 std::cout << fastest[i] / 1000 << "km." << std::endl;
@@ -35,8 +24,21 @@ Results find_gems(Segment& seg, std::vector<int> fastest) {
         for (int i = 0; i < fastest.size(); i++) {
             results[fastest[i]] = search_corridor(seg, fastest[i]);
         }
+    } else {
+        std::cout << "Input track has a total distance of " << total_distance
+        << "km, which is less than the minimal fastest item of " << minimal_fastest / 1000
+        << "km, thus cannot find any 💎 in this track." << std::endl;
     }
     return results;
+}
+
+void remove_fastest_if_longer_than_total_distance(std::vector<int> & fastest, float total_distance) {
+    // check which fastest is larger than the total distance and remove if so
+    for (auto it=fastest.begin(); it!=fastest.end();) {
+        if (*it > total_distance) {
+            fastest.erase(it);
+        } else { ++it; }
+    }
 }
 
 std::pair<int, int> search_corridor(const Segment& seg, const int fastest) {

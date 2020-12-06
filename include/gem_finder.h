@@ -11,6 +11,8 @@ Results find_gems(Segment& seg, std::vector<int> fastest = {1000, 2000, 3000, 50
 
 std::pair<int, int> search_corridor(const Segment& seg, const int fastest);
 
+void remove_fastest_if_longer_than_total_distance(std::vector<int> & fastest, float total_distance);
+
 Distances get_vector_of_distances(const Coordinates& coordinates);
 
 std::vector<int> convert_vector_to_meter(const std::vector<int> &input);

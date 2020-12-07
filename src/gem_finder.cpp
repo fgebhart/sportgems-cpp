@@ -7,7 +7,7 @@ Results find_gems(Segment& seg, std::vector<int> fastest_distance) {
     }
     int minimal_fastest = *std::min_element(fastest_distance.begin(), fastest_distance.end());
     seg.distances = get_vector_of_distances(seg.coordinates);
-    float total_distance = seg.distances.back();
+    double total_distance = seg.distances.back();
     std::vector<Result> results;
     remove_fastest_distance_if_longer_than_total_distance(fastest_distance, total_distance);
     if (fastest_distance.size() > 0) {
@@ -34,7 +34,7 @@ Results find_gems(Segment& seg, std::vector<int> fastest_distance) {
     return results;
 }
 
-void remove_fastest_distance_if_longer_than_total_distance(std::vector<int> &fastest_distance, float total_distance) {
+void remove_fastest_distance_if_longer_than_total_distance(std::vector<int> &fastest_distance, double total_distance) {
     // check which fastest_distance is larger than the total distance and remove if so
     for (auto it=fastest_distance.begin(); it!=fastest_distance.end();) {
         if (*it > total_distance) {
@@ -44,7 +44,7 @@ void remove_fastest_distance_if_longer_than_total_distance(std::vector<int> &fas
 }
 
 Distances get_vector_of_distances(const Coordinates& coordinates) {
-    float distance = 0.0;
+    double distance = 0.0;
     Distances distances = {distance};
     for (int i = 0; i < coordinates.size() - 1; i++) {
         distance += calculate_distance(coordinates[i], coordinates[i+1]);
@@ -65,23 +65,23 @@ std::vector<int> convert_vector_to_meter(const std::vector<int> &input_in_km) {
 }
 
 Result search_section(const Segment& seg, const int fastest_distance) {
-    std::cout << ">>> Searching for fastest " << fastest_distance / 1000 << "km..." << std::endl;
+    // std::cout << ">>> Searching for fastest " << fastest_distance / 1000 << "km..." << std::endl;
     Section fastest_sec, curr_sec;
     Result result;
     result.fastest_distance = fastest_distance;
-    print_segment(seg);
+    // print_segment(seg);
     // main loop to scan through track and compare sections
     while (curr_sec.end_index < seg.length) {
         // build up section to have length of fastest_distance
-        print_section("current", curr_sec);
-        print_section("fastest", fastest_sec);
+        // print_section("current", curr_sec);
+        // print_section("fastest", fastest_sec);
         if (curr_sec.distance < fastest_distance) {
-            std::cout << "building up section..." << std::endl;
+            // std::cout << "building up section..." << std::endl;
             curr_sec.end_index += 1;
             curr_sec.distance = seg.distances[curr_sec.end_index] - seg.distances[curr_sec.start_index];
         } else {
             // update section distance, duration and velocity
-            std::cout << "computing duration: " << seg.times[curr_sec.end_index] << " - " << seg.times[curr_sec.start_index] << std::endl;
+            // std::cout << "computing duration: " << seg.times[curr_sec.end_index] << " - " << seg.times[curr_sec.start_index] << std::endl;
             curr_sec.distance = seg.distances[curr_sec.end_index] - seg.distances[curr_sec.start_index];
             curr_sec.duration = seg.times[curr_sec.end_index] - seg.times[curr_sec.start_index];
             curr_sec.velocity = curr_sec.distance / curr_sec.duration;
@@ -99,8 +99,8 @@ Result search_section(const Segment& seg, const int fastest_distance) {
     return result;
 }
 
-int get_number_of_unique_elements(const std::vector<float> &input_vec) {
-    int nr = std::set<float>(input_vec.begin(), input_vec.end()).size();
+int get_number_of_unique_elements(const std::vector<double> &input_vec) {
+    int nr = std::set<double>(input_vec.begin(), input_vec.end()).size();
     return nr;
 }
 
@@ -108,7 +108,7 @@ void perform_data_quality_checks(const Segment &seg) {
     // check_if_data_does_change_at_all(seg.times);
 }
 
-void check_if_data_does_change_at_all(const std::vector<float>& vec) {
+void check_if_data_does_change_at_all(const std::vector<double>& vec) {
     if (get_number_of_unique_elements(vec) < 2) {
         throw DataQualityError();
     }

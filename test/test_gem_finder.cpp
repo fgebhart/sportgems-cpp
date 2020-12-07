@@ -15,13 +15,13 @@ TEST(test_gem_finder, get_vector_of_distances) {
     // test two coordinates only
     coordinates = {{48.0, 8.0}, {48.0, 8.1}};
     result_distances = get_vector_of_distances(coordinates);
-    expected_distances = {0.0, 7448.7124};
+    expected_distances = {0.0, 7448.6841};
     ASSERT_VEC_OF_FLOATS_EQ(expected_distances, result_distances);
 
     // test more than two coordinates
     coordinates = {{48.0, 8.0}, {48.0, 8.1}, {48.0, 8.2}, {48.0, 8.3}};
     result_distances = get_vector_of_distances(coordinates);
-    expected_distances = {0.0, 7448.7124, 14897.3535, 22346.0664};
+    expected_distances = {0.0, 7448.6841, 14897.3682, 22346.0523};
     ASSERT_VEC_OF_FLOATS_EQ(expected_distances, result_distances);
 }
 
@@ -59,17 +59,18 @@ TEST(test_gem_finder, find_gems__with_generator) {
     result_2.fastest_distance = 2000;
     result_3.fastest_distance = 3000;
     result_1.start_index = 9;
-    result_2.start_index = 9;
-    result_3.start_index = 3;
+    result_2.start_index = 3;
+    result_3.start_index = 1;
     result_1.end_index = 17;
-    result_2.end_index = 25;
-    result_3.end_index = 28;
-    result_1.velocity_found = 122.299;
-    result_2.velocity_found = 118.158;
-    result_3.velocity_found = 115.674;
+    result_2.end_index = 19;
+    result_3.end_index = 26;
+    result_1.velocity_found = 122.451;
+    result_2.velocity_found = 118.276;
+    result_3.velocity_found = 115.772;
     expected_results.push_back(result_1);
     expected_results.push_back(result_2);
     expected_results.push_back(result_3);
+
     ASSERT_RESULTS_EG(expected_results, results);
 }
 
@@ -97,11 +98,11 @@ TEST(test_gem_finder, find_gems__with_parser) {
     result_3.end_index = 1;
     result_5.end_index = 1;
     result_10.end_index = 2;
-    result_1.velocity_found = 1811.092;
-    result_2.velocity_found = 1811.092;
-    result_3.velocity_found = 1811.092;
-    result_5.velocity_found = 1811.092;
-    result_10.velocity_found = 1811.083;
+    result_1.velocity_found = 1811.0857;
+    result_2.velocity_found = 1811.0857;
+    result_3.velocity_found = 1811.0857;
+    result_5.velocity_found = 1811.0857;
+    result_10.velocity_found = 1811.0857;
     expected_results.push_back(result_1);
     expected_results.push_back(result_2);
     expected_results.push_back(result_3);

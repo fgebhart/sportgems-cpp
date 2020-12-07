@@ -4,13 +4,13 @@
 #include "../include/generator.h"
 
 
-Segment Generator::generate_segment(int length, float velocity, Coordinate start_c, int start_t, float start_e) {
+Segment Generator::generate_segment(int length, double velocity, Coordinate start_c, int start_t, double start_e) {
     Coordinates _coordinates;
     Times _times;
     Elevation _elevation;
-    float coordinates_increment = velocity / 1000;
-    float elevation_increment = velocity / 100;
-    float times_increment = 1;  // always increment 1 second
+    double coordinates_increment = velocity / 1000;
+    double elevation_increment = velocity / 100;
+    double times_increment = 1;  // always increment 1 second
     _start_coordinate = {start_c.first + coordinates_increment, start_c.second};
     _start_time = start_t + times_increment;
     _start_elevation = start_e + elevation_increment;
@@ -28,14 +28,14 @@ Segment Generator::generate_segment(int length, float velocity, Coordinate start
         _times.push_back(last_time + times_increment);
 
         // adding new elevation
-        float last_elevation = _elevation.back();
+        double last_elevation = _elevation.back();
         _elevation.push_back(last_elevation + elevation_increment);
     }
     Segment track(_coordinates, _times, _elevation);
     return track;
 }
 
-Segment generate_track(std::vector<float> length_list, std::vector<float> velocity_list) {
+Segment generate_track(std::vector<double> length_list, std::vector<double> velocity_list) {
     assert(length_list.size() == velocity_list.size());
     Segment track;
     Generator gen;

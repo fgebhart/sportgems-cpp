@@ -13,17 +13,17 @@ Results find_gems(Segment& seg, std::vector<int> fastest = {1000, 2000, 3000, 50
 
 Result search_section(const Segment& seg, const int fastest_distance);
 
-void remove_fastest_distance_if_longer_than_total_distance(std::vector<int> & fastest, float total_distance);
+void remove_fastest_distance_if_longer_than_total_distance(std::vector<int> & fastest, double total_distance);
 
 Distances get_vector_of_distances(const Coordinates& coordinates);
 
 std::vector<int> convert_vector_to_meter(const std::vector<int> &input);
 
-int get_number_of_unique_elements(const std::vector<float> &input_vec);
+int get_number_of_unique_elements(const std::vector<double> &input_vec);
 
 void perform_data_quality_checks(const Segment &seg);
 
-void check_if_data_does_change_at_all(const std::vector<float>& vec);
+void check_if_data_does_change_at_all(const std::vector<double>& vec);
 
 void print_section(const std::string &name, const Section &sec);
 

@@ -5,10 +5,10 @@ Times operator+(Times& v1, const Times& v2){
     v1.insert(v1.end(),v2.begin(),v2.end());
     return v1;
 };
-Elevation operator+(Elevation& e1, const Elevation& e2){
-    e1.insert(e1.end(),e2.begin(),e2.end());
-    return e1;
-};
+// Elevation operator+(Elevation& e1, const Elevation& e2){
+//     e1.insert(e1.end(),e2.begin(),e2.end());
+//     return e1;
+// };
 Coordinates operator+(Coordinates& c1, const Coordinates& c2) {
     c1.insert(c1.end(), c2.begin(), c2.end());
     return c1;

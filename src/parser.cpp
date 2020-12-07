@@ -90,7 +90,7 @@ void XMLParser::add_coordinates_to_vector(std::string const &input) {
     std::vector<std::string> lat_and_lon = split(input, ' ');
     Coordinate coordinate;
     for (int i = 0; i < lat_and_lon.size() ; i++) {
-        float lat, lon = 0;
+        double lat, lon = 0;
         if (string_starts_with(lat_and_lon[i], "lat")) {
             std::string s = remove_substring(remove_substring(lat_and_lon[i], "lat="), ">");
             lat = ::atof(remove_quotes(s).c_str());
@@ -109,6 +109,6 @@ void XMLParser::add_coordinates_to_vector(std::string const &input) {
 }
 
 void XMLParser::add_elevation_to_vector(std::string const &input) {
-    float elevation = ::atof(remove_substring(input, "ele>").c_str());
+    double elevation = ::atof(remove_substring(input, "ele>").c_str());
     _elevation.push_back(elevation);
 }

@@ -8,10 +8,10 @@
 #include <cassert>
 
 typedef std::vector<double> Times;
-typedef std::vector<std::pair<float, float>> Coordinates;
-typedef std::pair<float, float> Coordinate;
-typedef std::vector<float> Elevation;
-typedef std::vector<float> Distances;
+typedef std::vector<std::pair<double, double>> Coordinates;
+typedef std::pair<double, double> Coordinate;
+typedef std::vector<double> Elevation;
+typedef std::vector<double> Distances;
 
 
 Times operator+(Times& v1, const Times& v2);
@@ -20,7 +20,7 @@ Coordinates operator+(Coordinates& c1, const Coordinates& c2);
 
 struct Result {
     int fastest_distance;
-    float velocity_found;
+    double velocity_found;
     int start_index;
     int end_index;
 };
@@ -30,9 +30,9 @@ typedef std::vector<Result> Results;
 struct Section {
     int start_index = 0;
     int end_index = 0;
-    float distance = 0.0;   // in meter
+    double distance = 0.0;   // in meter
     int duration = 0.0;     // time in seconds
-    float velocity = 0.0;   // in meter per seconds
+    double velocity = 0.0;   // in meter per seconds
 };
 
 struct Segment {
@@ -50,8 +50,8 @@ struct Segment {
     int end_time = 1;
     Coordinate start_coordinate = {40.001, 10.0};
     Coordinate end_coordinate = {40.001, 10.0};
-    float start_elevation = 100.001;
-    float end_elevation = 100.001;
+    double start_elevation = 100.001;
+    double end_elevation = 100.001;
 };
 
 Segment operator+(Segment &seg1, Segment &seg2);

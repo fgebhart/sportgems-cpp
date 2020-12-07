@@ -17,6 +17,15 @@ bool is_in_vector(const std::string& lookup_string, const std::vector<std::strin
 }
 
 
+bool string_ends_with(const std::string &main_string, std::string const &ending) {
+    if (main_string.length() >= ending.length()) {
+        return (0 == main_string.compare(main_string.length() - ending.length(), ending.length(), ending));
+    } else {
+        return false;
+    }
+}
+
+
 int main(int argc, char* argv[]) {
 
     std::vector<std::string> args(argv, argv+argc);
@@ -42,14 +51,19 @@ int main(int argc, char* argv[]) {
 
     Segment track;
     std::string input_file;
-    if (is_in_vector("--demo", args)) {
+    if (is_in_vector("--demo", args)) {     // using dummy generated file
         input_file = "dummy-track.gpx";
         track = generate_track({50, 50, 50}, {1.0, 1.5, 1.0});
-    } else {
-        // TODO verify that input file ends on .gpx
+    } else {        // parsing gpx 
         input_file = argv[1];
-        XMLParser xml_parser(input_file);
-        track = xml_parser.parse_file();
+        if (string_ends_with(input_file, ".gpx")) {
+            XMLParser xml_parser(input_file);
+            track = xml_parser.parse_file();
+        } else {
+            std::cerr << "Input file needs to be a .gpx file." << std::endl;
+            return 1;
+        }
+        
     }
     std::cout << "Hi 👋 from sportgems! Will search for 💎 in " << input_file << std::endl;
 

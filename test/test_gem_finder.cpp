@@ -41,7 +41,7 @@ TEST(test_gem_finder, check_if_data_does_change_at_all) {
     bool caught_exception = false;
     try {
         check_if_data_does_change_at_all({2.0, 2.0, 2.0, 2.0, 2.0});
-    } catch(DataQualityError) {
+    } catch(TooLittleDataError) {
         caught_exception = true;
     }
     assert(caught_exception);
@@ -109,4 +109,48 @@ TEST(test_gem_finder, find_gems__with_parser) {
     expected_results.push_back(result_5);
     expected_results.push_back(result_10);
     ASSERT_RESULTS_EG(expected_results, results);
+}
+
+TEST(test_gem_finder, find_gems__throws_TrackTooShortError) {
+    // generate a track which has some data but is shorter than the minimal configured fastest_distance
+    Segment track = generate_track({3}, {1.0});
+
+    // test that the TrackTooShortError is thrown
+    bool caught_exception = false;
+    try {
+        Results results = find_gems(track);
+    } catch(TrackTooShortError) {
+        caught_exception = true;
+    }
+    assert(caught_exception);
+}
+
+TEST(test_gem_finder, find_gems__throws_TooLittleDataError) {
+    // generate a track with all the same coordinates since velocity is 0
+    Segment track = generate_track({10}, {0.0});
+
+    // test that the TooLittleDataError is thrown
+    bool caught_exception = false;
+    try {
+        Results results = find_gems(track);
+    } catch(TooLittleDataError) {
+        caught_exception = true;
+    }
+    assert(caught_exception);
+}
+
+TEST(test_gem_finder, find_gems__throws_InconsistentDataError) {
+    bool caught_exception;
+    // generate a segment with inconsistent vector sizes
+    Coordinates c = {{1.0, 2.0}, {2.0, 1.0}};   // size 2
+    Times t = {1.2, 2.3, 4.1};                  // size 3
+    Elevation e = {123.4, 567.8};               // size 2
+    // this will already throw the InconsistentDataError
+    caught_exception = false;
+    try {
+        Segment seg(c, t, e);
+    } catch(InconsistentDataError) {
+        caught_exception = true;
+    }
+    assert(caught_exception);
 }

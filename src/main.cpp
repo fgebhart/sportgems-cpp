@@ -6,6 +6,7 @@
 #include "../include/parser.h"
 #include "../include/gem_finder.h"
 #include "../include/types.h"
+#include "../include/exceptions.h"
 
 
 bool is_in_vector(const std::string& lookup_string, const std::vector<std::string>& input_vec) {
@@ -15,35 +16,59 @@ bool is_in_vector(const std::string& lookup_string, const std::vector<std::strin
         return false;
 }
 
+
 int main(int argc, char* argv[]) {
+
     std::vector<std::string> args(argv, argv+argc);
-
-    if (argc < 2) {
-        std::cerr << "Usage: " << argv[0] << " GPX-FILE" << std::endl;
-        return 1;
-    }
-
-    if (is_in_vector("--help", args)) {
-        std::cout << "printing help here" << std::endl;
+    if (is_in_vector("--help", args) | argc < 2) {
+        std::cout << "Usage: " << argv[0] << " path/to/file.gpx" << std::endl;
+        const char * help = 
+        "\n"
+        "💎 Sportgems is a CLI for finding the fastest sections in your GPX tracks 💎\n"
+        "\n"
+        "In the default configuration sportgems will search for the fastest:\n"
+        "1km, 2km, 3km, 5km, 10km and 20km\n"
+        "\n"
+        "Optional arguments are:\n"
+        "--debug        Enables debugging and makes output more verbose.\n"
+        "--help         Prints this help.\n"
+        "--demo         Generates and analyzes a dummy track, no input file needed.";
+        std::cout << help << std::endl;
         return 0;
     }
-    
-    // Greetings
-    std::string path_to_gpx = argv[1];
-    std::cout << "Hi 👋 from sportgems! Will search for 💎 in " << path_to_gpx << std::endl;
 
-    // XML parser
-    XMLParser xml_parser(path_to_gpx);
-    Segment track = xml_parser.parse_file();
+    bool DEBUG = false;
+    if (is_in_vector("--debug", args)) { DEBUG = true; }
 
-    // generate testing track
-    // Segment track = generate_track({100, 100, 100}, {1.0, 1.5, 1.0});
+    Segment track;
+    std::string input_file;
+    if (is_in_vector("--demo", args)) {
+        input_file = "dummy-track.gpx";
+        track = generate_track({50, 50, 50}, {1.0, 1.5, 1.0});
+    } else {
+        // TODO verify that input file ends on .gpx
+        input_file = argv[1];
+        XMLParser xml_parser(input_file);
+        track = xml_parser.parse_file();
+    }
+    std::cout << "Hi 👋 from sportgems! Will search for 💎 in " << input_file << std::endl;
 
     // find gems in track
     Results results;
-    results = find_gems(track);
-    if (!results.empty()) {
-        print_results(results);
+    try {
+        results = find_gems(track, DEBUG);
+        if (!results.empty()) {
+            print_results(results);
+        }
+    } catch(const TooLittleDataError& e) {
+        std::cerr << e.what() << '\n';
+        return 1;
+    } catch(const TrackTooShortError& e) {
+        std::cerr << e.what() << '\n';
+        return 1;
+    } catch(const InconsistentDataError& e) {
+        std::cerr << e.what() << '\n';
+        return 1;
     }
     
     return 0;

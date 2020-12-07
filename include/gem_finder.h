@@ -9,9 +9,10 @@
 #include "../include/geo.h"
 #include "../include/exceptions.h"
 
-Results find_gems(Segment& seg, std::vector<int> fastest = {1000, 2000, 3000, 5000, 10000, 15000, 20000});
 
-Result search_section(const Segment& seg, const int fastest_distance);
+Results find_gems(Segment& seg, bool debug = false, std::vector<int> fastest = {1000, 2000, 3000, 5000, 10000, 15000, 20000});
+
+Result search_section(const Segment& seg, const int fastest_distance, bool debug);
 
 void remove_fastest_distance_if_longer_than_total_distance(std::vector<int> & fastest, double total_distance);
 
@@ -25,6 +26,8 @@ void perform_data_quality_checks(const Segment &seg);
 
 void check_if_data_does_change_at_all(const std::vector<double>& vec);
 
-void print_section(const std::string &name, const Section &sec);
+void verify_vectors_equal_size(const Segment &seg);
+
+void print_section(const std::string &name, const Section &sec, const bool debug);
 
 #endif

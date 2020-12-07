@@ -14,10 +14,6 @@ typedef std::vector<double> Elevation;
 typedef std::vector<double> Distances;
 
 
-Times operator+(Times& v1, const Times& v2);
-Elevation operator+(Elevation& e1, const Elevation& e2);
-Coordinates operator+(Coordinates& c1, const Coordinates& c2);
-
 struct Result {
     int fastest_distance;
     double velocity_found;
@@ -56,8 +52,8 @@ struct Segment {
 
 Segment operator+(Segment &seg1, Segment &seg2);
 
-void print_segment(Segment const &segment);
+void print_segment(Segment const &segment, bool debug=true);
 
-void print_results(Results const &results);
+void print_results(Results const &results, bool debug=true);
 
 #endif

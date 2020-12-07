@@ -1,7 +1,7 @@
 #include "../include/gem_finder.h"
 
 
-std::vector<Result> find_gems(Segment& seg, std::vector<int> fastest_distance) {
+Results find_gems(Segment& seg, std::vector<int> fastest_distance) {
     if (!((seg.coordinates.size() == seg.times.size()) && (seg.times.size() == seg.elevation.size()))) {
         throw std::length_error("Size of input data vectors needs to be equal.");
     }
@@ -9,7 +9,6 @@ std::vector<Result> find_gems(Segment& seg, std::vector<int> fastest_distance) {
     seg.distances = get_vector_of_distances(seg.coordinates);
     float total_distance = seg.distances.back();
     std::vector<Result> results;
-    print_segment(seg);
     remove_fastest_distance_if_longer_than_total_distance(fastest_distance, total_distance);
     if (fastest_distance.size() > 0) {
         std::cout << "Input track is " << total_distance / 1000 << "km long - searching for fastest_distance ";
@@ -65,7 +64,6 @@ std::vector<int> convert_vector_to_meter(const std::vector<int> &input_in_km) {
 
 Result search_section(const Segment& seg, const int fastest_distance) {
     Section fastest_sec, curr_sec;
-    std::cout << "searching for fastest: " << fastest_distance / 1000 << "km" << std::endl;
     Result result;
     result.fastest_distance = fastest_distance;
     // main loop to scan through track and compare sections
@@ -86,15 +84,7 @@ Result search_section(const Segment& seg, const int fastest_distance) {
             // now move the start index further, end index will also be moved if section gets smaller than fastest_distance
             curr_sec.start_index += 1;
         }
-        // std::cout << "start: " << curr_sec.start_index
-        //             << ", end: " << curr_sec.end_index
-        //             << ", distance: " << curr_sec.distance
-        //             << ", duration: " << curr_sec.duration
-        //             << ", velocity: "<< curr_sec.velocity
-        //             << ", fastest sec vel: " << fastest_sec.velocity << std::endl;
-        std::this_thread::sleep_for(std::chrono::microseconds(100));
     }
-
     result.start_index = fastest_sec.start_index;
     result.end_index = fastest_sec.end_index;
     result.velocity_found = fastest_sec.velocity;

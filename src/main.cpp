@@ -40,7 +40,7 @@ int main(int argc, char* argv[]) {
     // Segment track = generate_track({100, 100, 100}, {1.0, 1.5, 1.0});
 
     // find gems in track
-    std::vector<Result> results;
+    Results results;
     results = find_gems(track);
     if (!results.empty()) {
         print_results(results);

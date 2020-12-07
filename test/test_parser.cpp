@@ -5,7 +5,7 @@
 
 TEST(test_parser, parse_file) {
     XMLParser parser("../test/data/tiny.gpx");
-    auto result_track = parser.parse_file();
+    Segment result_track = parser.parse_file();
     
     Coordinates expected_c = {{49.4, 8.5}, {49.4, 8.6}, {49.4, 8.7}};
     Times expected_t = {1606651201, 1606651205, 1606651209};

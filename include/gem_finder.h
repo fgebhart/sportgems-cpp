@@ -3,13 +3,11 @@
 
 #include <cassert>
 #include <algorithm>
-#include <thread>
-#include <chrono>
 
 #include "../include/types.h"
 #include "../include/geo.h"
 
-std::vector<Result> find_gems(Segment& seg, std::vector<int> fastest = {1000, 2000, 3000, 5000, 10000, 15000, 20000});
+Results find_gems(Segment& seg, std::vector<int> fastest = {1000, 2000, 3000, 5000, 10000, 15000, 20000});
 
 Result search_section(const Segment& seg, const int fastest_distance);
 

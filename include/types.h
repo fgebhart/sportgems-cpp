@@ -25,6 +25,8 @@ struct Result {
     int end_index;
 };
 
+typedef std::vector<Result> Results;
+
 struct Section {
     int start_index = 0;
     int end_index = 0;
@@ -56,6 +58,6 @@ Segment operator+(Segment &seg1, Segment &seg2);
 
 void print_segment(Segment const &segment);
 
-void print_results(std::vector<Result> const &results);
+void print_results(Results const &results);
 
 #endif

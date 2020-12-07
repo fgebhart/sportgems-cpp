@@ -46,7 +46,7 @@ void print_segment(Segment const &segment) {
     }
 }
 
-void print_results(std::vector<Result> const &results) {
+void print_results(Results const &results) {
     std::cout << "\n" << "========================== Results ==========================" << std::endl;
     std::cout << "Found following start- and end-indexes of fastest corridors: " << std::endl;
     for (int i = 0; i < results.size(); i++) {

@@ -40,4 +40,19 @@ void ASSERT_SEGMENT_EQ(Segment const &expected_track, Segment const &result_trac
     ASSERT_VEC_OF_FLOATS_EQ(expected_track.elevation, result_track.elevation);
 }
 
+void ASSERT_RESULT_EG(Result const &expected_result, Result const &result) {
+    ASSERT_EQ(expected_result.fastest_distance, result.fastest_distance);
+    ASSERT_EQ(expected_result.start_index, result.start_index);
+    ASSERT_EQ(expected_result.end_index, result.end_index);
+    ASSERT_NEAR(expected_result.velocity_found, result.velocity_found, 0.001);
+}
+
+void ASSERT_RESULTS_EG(Results const &expected_results, Results const &results) {
+    ASSERT_EQ(expected_results.size(), results.size()) << "results vectors are of unequal length";
+
+    for (int i = 0; i < results.size(); i++) {
+        ASSERT_RESULT_EG(expected_results[i], results[i]);
+    }
+}
+
 #endif

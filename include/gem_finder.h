@@ -3,15 +3,17 @@
 
 #include <cassert>
 #include <algorithm>
+#include <thread>
+#include <chrono>
 
 #include "../include/types.h"
 #include "../include/geo.h"
 
-Results find_gems(Segment& seg, std::vector<int> fastest = {1000, 2000, 3000, 5000, 10000, 15000, 20000});
+std::vector<Result> find_gems(Segment& seg, std::vector<int> fastest = {1000, 2000, 3000, 5000, 10000, 15000, 20000});
 
-std::pair<int, int> search_corridor(const Segment& seg, const int fastest);
+Result search_section(const Segment& seg, const int fastest_distance);
 
-void remove_fastest_if_longer_than_total_distance(std::vector<int> & fastest, float total_distance);
+void remove_fastest_distance_if_longer_than_total_distance(std::vector<int> & fastest, float total_distance);
 
 Distances get_vector_of_distances(const Coordinates& coordinates);
 

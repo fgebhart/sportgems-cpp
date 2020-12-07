@@ -57,7 +57,8 @@
         "bitset": "cpp",
         "cstring": "cpp",
         "regex": "cpp",
-        "codecvt": "cpp"
+        "codecvt": "cpp",
+        "thread": "cpp"
     },
     "cSpell.ignoreWords": [
         "trkpt",

@@ -10,7 +10,7 @@ Segment Generator::generate_segment(int length, float velocity, Coordinate start
     Elevation _elevation;
     float coordinates_increment = velocity / 1000;
     float elevation_increment = velocity / 100;
-    float times_increment = velocity;
+    float times_increment = 1;  // always increment 1 second
     _start_coordinate = {start_c.first + coordinates_increment, start_c.second};
     _start_time = start_t + times_increment;
     _start_elevation = start_e + elevation_increment;

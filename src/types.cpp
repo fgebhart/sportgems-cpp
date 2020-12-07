@@ -17,6 +17,9 @@ Coordinates operator+(Coordinates& c1, const Coordinates& c2) {
 Segment::Segment() {};
 
 Segment::Segment(Coordinates c, Times t, Elevation e) : coordinates(c), times(t), elevation(e) {
+    length = coordinates.size();
+    assert(elevation.size() == length);
+    assert(times.size() == length);
     start_time = times.front();
     end_time = times.back();
     start_coordinate = coordinates.front();
@@ -43,13 +46,13 @@ void print_segment(Segment const &segment) {
     }
 }
 
-void print_results(Results const &res) {
+void print_results(std::vector<Result> const &results) {
     std::cout << "\n" << "========================== Results ==========================" << std::endl;
     std::cout << "Found following start- and end-indexes of fastest corridors: " << std::endl;
-    for(auto elem : res) {
-       std::cout
-       << "Fastest " << elem.first / 1000
-       << "km: Start: " << elem.second.first
-       << ", End: " << elem.second.second << std::endl;
+    for (int i = 0; i < results.size(); i++) {
+    std::cout << "💎 Fastest " << results[i].fastest_distance / 1000
+              << "km: start: " << results[i].start_index
+              << ", end: " << results[i].end_index
+              << ", velocity: " << results[i].velocity_found << " m/s" << std::endl;
     }
 }

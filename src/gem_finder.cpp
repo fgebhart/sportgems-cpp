@@ -28,10 +28,10 @@ Results find_gems(Segment& seg, bool debug, std::vector<int> fastest_distance) {
                 std::cout << fastest_distance[i] / 1000 << "km, ";
             }
         }
-        // start search_section here to find the fastest_distance X km section
-        // TODO: use async for scanning through the track concurrently
+        // start search_section using multithreading to find the fastest_distance section
         for (int i = 0; i < fastest_distance.size(); i++) {
-            results.push_back(search_section(seg, fastest_distance[i], debug));
+            auto handle = std::async(std::launch::async, search_section, seg, fastest_distance[i], debug);
+            results.push_back(handle.get());
         }
     } else {
         throw TrackTooShortError(minimal_fastest, total_distance);

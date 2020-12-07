@@ -4,6 +4,8 @@
 #include <cassert>
 #include <algorithm>
 #include <set>
+#include <thread>
+#include <future>
 
 #include "../include/types.h"
 #include "../include/geo.h"

@@ -7,7 +7,7 @@
 #include <map>
 #include <cassert>
 
-typedef std::vector<int> Times;
+typedef std::vector<double> Times;
 typedef std::vector<std::pair<float, float>> Coordinates;
 typedef std::pair<float, float> Coordinate;
 typedef std::vector<float> Elevation;
@@ -31,7 +31,7 @@ struct Section {
     int start_index = 0;
     int end_index = 0;
     float distance = 0.0;   // in meter
-    int duration = 0;       // time in seconds
+    int duration = 0.0;     // time in seconds
     float velocity = 0.0;   // in meter per seconds
 };
 

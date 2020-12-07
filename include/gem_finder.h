@@ -19,10 +19,12 @@ Distances get_vector_of_distances(const Coordinates& coordinates);
 
 std::vector<int> convert_vector_to_meter(const std::vector<int> &input);
 
-int get_number_of_unique_elements(const std::vector<int> &input_vec);
-
-void check_if_data_does_change_at_all(const std::vector<int>& vec);
+int get_number_of_unique_elements(const std::vector<float> &input_vec);
 
 void perform_data_quality_checks(const Segment &seg);
+
+void check_if_data_does_change_at_all(const std::vector<float>& vec);
+
+void print_section(const std::string &name, const Section &sec);
 
 #endif

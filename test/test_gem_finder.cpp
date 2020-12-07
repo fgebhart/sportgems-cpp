@@ -1,6 +1,7 @@
-#include "../include/gem_finder.h"
-#include "test_helper.h"
 #include "gtest/gtest.h"
+
+#include "test_helper.h"
+#include "../include/gem_finder.h"
 #include "../include/generator.h"
 #include "../include/parser.h"
 #include "../include/exceptions.h"
@@ -25,28 +26,25 @@ TEST(test_gem_finder, get_vector_of_distances) {
 }
 
 TEST(test_gem_finder, get_number_of_unique_elements) {
-    std::vector<int> vec = {1, 2, 2, 2, 3};
-    int result = get_number_of_unique_elements(vec);
-    int expected = 3;
-    EXPECT_EQ(expected, result);
+    // test using integers
+    EXPECT_EQ(3, get_number_of_unique_elements({1, 2, 2, 2, 3}));
+
+    // test using floats
+    EXPECT_EQ(3, get_number_of_unique_elements({1.0, 2.1, 2.1, 2.1, 3.7}));
 }
 
 TEST(test_gem_finder, check_if_data_does_change_at_all) {
-    std::vector<int> vec;
     // does not throw an exception
-    vec = {1, 2, 2, 2, 3};
-    check_if_data_does_change_at_all(vec);
+    check_if_data_does_change_at_all({1.0, 2.0, 2.0, 2.0, 3.0});
 
-    // does throw an error
+    // does throw an error because all elements are equal
     bool caught_exception = false;
-    vec = {2, 2, 2, 2, 2};
     try {
-        check_if_data_does_change_at_all(vec);
+        check_if_data_does_change_at_all({2.0, 2.0, 2.0, 2.0, 2.0});
     } catch(DataQualityError) {
         caught_exception = true;
     }
     assert(caught_exception);
-
 }
 
 TEST(test_gem_finder, find_gems__with_generator) {

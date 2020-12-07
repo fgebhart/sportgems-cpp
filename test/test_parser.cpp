@@ -8,7 +8,7 @@ TEST(test_parser, parse_file) {
     Segment result_track = parser.parse_file();
     
     Coordinates expected_c = {{49.4, 8.5}, {49.4, 8.6}, {49.4, 8.7}};
-    Times expected_t = {1606651201, 1606651205, 1606651209};
+    Times expected_t = {1606651201.0, 1606651205.0, 1606651209.0};
     Elevation expected_e = {321.2, 321.3, 321.5};
     Segment expected_track(expected_c, expected_t, expected_e);
 

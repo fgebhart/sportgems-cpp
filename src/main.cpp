@@ -30,7 +30,7 @@ int main(int argc, char* argv[]) {
     
     // Greetings
     std::string path_to_gpx = argv[1];
-    std::cout << "Hi 👋 from " << argv[0] << "! Will search for 💎 in " << path_to_gpx << std::endl;
+    std::cout << "Hi 👋 from sportgems! Will search for 💎 in " << path_to_gpx << std::endl;
 
     // XML parser
     XMLParser xml_parser(path_to_gpx);

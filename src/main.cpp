@@ -1,5 +1,6 @@
 #include <iostream>
 #include <time.h>
+#include <algorithm>
 
 #include "../include/generator.h"
 #include "../include/geo.h"
@@ -17,7 +18,8 @@ bool is_in_vector(const std::string& lookup_string, const std::vector<std::strin
 }
 
 
-bool string_ends_with(const std::string &main_string, std::string const &ending) {
+bool string_ends_with(std::string &main_string, const std::string &ending) {
+    std::transform(main_string.begin(), main_string.end(), main_string.begin(), ::tolower);
     if (main_string.length() >= ending.length()) {
         return (0 == main_string.compare(main_string.length() - ending.length(), ending.length(), ending));
     } else {
@@ -27,7 +29,6 @@ bool string_ends_with(const std::string &main_string, std::string const &ending)
 
 
 int main(int argc, char* argv[]) {
-
     std::vector<std::string> args(argv, argv+argc);
     if (is_in_vector("--help", args) | argc < 2) {
         std::cout << "Usage: " << argv[0] << " path/to/file.gpx" << std::endl;
@@ -63,8 +64,8 @@ int main(int argc, char* argv[]) {
             std::cerr << "Input file needs to be a .gpx file." << std::endl;
             return 1;
         }
-        
     }
+    
     std::cout << "Hi 👋 from sportgems! Will search for 💎 in " << input_file << std::endl;
 
     // find gems in track

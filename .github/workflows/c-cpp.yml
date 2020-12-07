@@ -25,7 +25,12 @@ jobs:
         cd build
         ctest . -V
 
-    - name: run
+    - name: run demo
+      run: |
+        cd build
+        ./sportgems --demo --debug
+
+    - name: parse file
       run: |
         cd build
         ./sportgems ../test/data/running.gpx

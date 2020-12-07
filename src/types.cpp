@@ -52,7 +52,7 @@ void print_segment(Segment const &segment, const bool debug) {
 void print_results(Results const &results, const bool debug) {
     if (debug) {
         std::cout << "\n" << "========================== Results ==========================" << std::endl;
-        std::cout << "Found following start- and end-indexes of fastest corridors: " << std::endl;
+        std::cout << "Found the following gems: " << std::endl;
         for (int i = 0; i < results.size(); i++) {
         std::cout << "💎 Fastest " << results[i].fastest_distance / 1000
                 << "km: start: " << results[i].start_index

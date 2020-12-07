@@ -20,7 +20,7 @@ Results find_gems(Segment& seg, bool debug, std::vector<int> fastest_distance) {
     std::vector<Result> results;
     if (fastest_distance.size() > 0) {
         // inform user about which fastest distances are being searched in this track
-        std::cout << "Input track is " << total_distance / 1000 << "km long - searching for fastest_distance ";
+        std::cout << "Input track is " << total_distance / 1000 << "km long - searching for fastest ";
         for (int i = 0; i < fastest_distance.size(); i++) {
             if (i == fastest_distance.size() - 1) {
                 std::cout << fastest_distance[i] / 1000 << "km." << std::endl;

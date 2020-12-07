@@ -3,6 +3,7 @@
 #include "gtest/gtest.h"
 #include "../include/generator.h"
 #include "../include/parser.h"
+#include "../include/exceptions.h"
 
 
 TEST(test_gem_finder, get_vector_of_distances) {
@@ -21,6 +22,31 @@ TEST(test_gem_finder, get_vector_of_distances) {
     result_distances = get_vector_of_distances(coordinates);
     expected_distances = {0.0, 7448.7124, 14897.3535, 22346.0664};
     ASSERT_VEC_OF_FLOATS_EQ(expected_distances, result_distances);
+}
+
+TEST(test_gem_finder, get_number_of_unique_elements) {
+    std::vector<int> vec = {1, 2, 2, 2, 3};
+    int result = get_number_of_unique_elements(vec);
+    int expected = 3;
+    EXPECT_EQ(expected, result);
+}
+
+TEST(test_gem_finder, check_if_data_does_change_at_all) {
+    std::vector<int> vec;
+    // does not throw an exception
+    vec = {1, 2, 2, 2, 3};
+    check_if_data_does_change_at_all(vec);
+
+    // does throw an error
+    bool caught_exception = false;
+    vec = {2, 2, 2, 2, 2};
+    try {
+        check_if_data_does_change_at_all(vec);
+    } catch(DataQualityError) {
+        caught_exception = true;
+    }
+    assert(caught_exception);
+
 }
 
 TEST(test_gem_finder, find_gems__with_generator) {

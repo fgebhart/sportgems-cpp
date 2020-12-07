@@ -11,6 +11,8 @@ Results find_gems(Segment& seg, std::vector<int> fastest_distance) {
     std::vector<Result> results;
     remove_fastest_distance_if_longer_than_total_distance(fastest_distance, total_distance);
     if (fastest_distance.size() > 0) {
+        perform_data_quality_checks(seg);
+        // inform which fastest distances are being searched in this track
         std::cout << "Input track is " << total_distance / 1000 << "km long - searching for fastest_distance ";
         for (int i = 0; i < fastest_distance.size(); i++) {
             if (i == fastest_distance.size() - 1) {
@@ -32,7 +34,18 @@ Results find_gems(Segment& seg, std::vector<int> fastest_distance) {
     return results;
 }
 
-void remove_fastest_distance_if_longer_than_total_distance(std::vector<int> & fastest_distance, float total_distance) {
+void perform_data_quality_checks(const Segment &seg) {
+    check_if_data_does_change_at_all(seg.times);
+}
+
+void check_if_data_does_change_at_all(const std::vector<int>& vec) {
+    if (get_number_of_unique_elements(vec) < 2) {
+        throw DataQualityError();
+    }
+    
+}
+
+void remove_fastest_distance_if_longer_than_total_distance(std::vector<int> &fastest_distance, float total_distance) {
     // check which fastest_distance is larger than the total distance and remove if so
     for (auto it=fastest_distance.begin(); it!=fastest_distance.end();) {
         if (*it > total_distance) {
@@ -81,6 +94,11 @@ Result search_section(const Segment& seg, const int fastest_distance) {
             if (curr_sec.velocity > fastest_sec.velocity) {
                 fastest_sec = curr_sec;
             }
+            // std::cout << "sec: " << curr_sec.start_index << " - "<< curr_sec.end_index
+            // << ", distance: " << curr_sec.distance
+            // << ", duration: " << curr_sec.duration
+            // << ", vel: " << curr_sec.velocity
+            // << ", fastest vel: " << fastest_sec.velocity << std::endl;
             // now move the start index further, end index will also be moved if section gets smaller than fastest_distance
             curr_sec.start_index += 1;
         }
@@ -88,5 +106,11 @@ Result search_section(const Segment& seg, const int fastest_distance) {
     result.start_index = fastest_sec.start_index;
     result.end_index = fastest_sec.end_index;
     result.velocity_found = fastest_sec.velocity;
-    return result;    // TODO implement this function
+    return result;
+}
+
+
+int get_number_of_unique_elements(const std::vector<int> &input_vec) {
+    int nr = std::set<int>( input_vec.begin(), input_vec.end() ).size();
+    return nr;
 }

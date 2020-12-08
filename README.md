@@ -32,7 +32,7 @@ Found the following gems:
 In order to do so, you need to clone this repo and build it from sources. How to do this
 is described in depth in the following.
 
-First clone the repo (using the `--recurse-submodules` option to include (gtest)[https://github.com/google/googletest/]
+First clone the repo (using the `--recurse-submodules` option to include [gtest](https://github.com/google/googletest/)
 for testing)
 ```
 git clone git@github.com:fgebhart/sportgems.git --recurse-submodules
@@ -97,7 +97,7 @@ The core algorithm can be depicted as follows
 
 
 ## Running the tests
-Sportgems uses (gtest)[https://github.com/google/googletest/] for unit testing. However, it is
+Sportgems uses [gtest](https://github.com/google/googletest/) for unit testing. However, it is
 possible to run all tests (from the build directory) using
 ```
 ctest
@@ -113,6 +113,6 @@ or individual test suites, by executing the compiled binary, e.g.
 
 On top of the current implementation, it is further planned to
 * parse the sections with highest power (using elevation data)
-* deduce (VO2max)[https://en.wikipedia.org/wiki/VO2_max] from activity data using the (estimation method of firstbeat)[https://assets.firstbeat.com/firstbeat/uploads/2017/06/white_paper_VO2max_30.6.2017.pdf] with heartbeat and speed data.
+* deduce [VO2max](https://en.wikipedia.org/wiki/VO2_max) from activity data using the [estimation method of firstbeat](https://assets.firstbeat.com/firstbeat/uploads/2017/06/white_paper_VO2max_30.6.2017.pdf) with heartbeat and speed data.
 * packaging the sportgem C++ code base into a Python package
-* including the sportgem python package into (workoutizer - a sport workout organizer)[https://github.com/fgebhart/workoutizer]
+* including the sportgem python package into [workoutizer - a sport workout organizer](https://github.com/fgebhart/workoutizer)

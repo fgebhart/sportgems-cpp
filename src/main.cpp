@@ -41,8 +41,8 @@ int main(int argc, char* argv[]) {
         "\n"
         "Optional arguments are:\n"
         "--debug        Enables debugging and makes output more verbose.\n"
-        "--help         Prints this help.\n"
-        "--demo         Generates and analyzes a dummy track, no input file needed.";
+        "--demo         Generates and analyzes a dummy track, no input file needed.\n"
+        "--help         Prints this help.";
         std::cout << help << std::endl;
         return 0;
     }
@@ -61,7 +61,7 @@ int main(int argc, char* argv[]) {
             XMLParser xml_parser(input_file);
             track = xml_parser.parse_file();
         } else {
-            std::cerr << "Input file needs to be a .gpx file." << std::endl;
+            std::cerr << "Input file needs to be a .gpx file. Run --help for more info." << std::endl;
             return 1;
         }
     }

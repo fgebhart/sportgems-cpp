@@ -4,8 +4,7 @@
 XMLParser::XMLParser(std::string path_to_file) : _path_to_file(path_to_file) {}
 
 // convert utc time string to an int timestamp (number of seconds since posix epoch)
-int get_epoch_ime(const std::wstring &date_time)
-{
+int get_epoch_ime(const std::wstring &date_time) {
     static const std::wstring dateTimeFormat{ L"%Y-%m-%dT%H:%M:%SZ" };
     std::wistringstream ss{ date_time };
     std::tm dt;
@@ -14,17 +13,17 @@ int get_epoch_ime(const std::wstring &date_time)
 }
 
 template <typename Out>
-void split(std::string const &s, char delim, Out result) {
+void split(std::string const &s, char delimiter, Out result) {
     std::istringstream iss(s);
     std::string item;
-    while (std::getline(iss, item, delim)) {
+    while (std::getline(iss, item, delimiter)) {
         *result++ = item;
     }
 }
 
-std::vector<std::string> split(std::string const &s, char delim) {
+std::vector<std::string> split(std::string const &s, char delimiter) {
     std::vector<std::string> elems;
-    split(s, delim, std::back_inserter(elems));
+    split(s, delimiter, std::back_inserter(elems));
     return elems;
 }
 
@@ -48,15 +47,13 @@ std::string remove_quotes(std::string main_string) {
 bool string_starts_with(std::string const &main_string, std::string const starting) {
     if (main_string.rfind(starting, 0) == 0) {
         return true;
-    } else
-    {
+    } else {
         return false;
     }
-    
 }
 
 Segment XMLParser::parse_file() {
-    bool in_track_segment;
+    bool in_track_segment = false;
     std::string token;
     std::ifstream filestream(_path_to_file);
     if (filestream.is_open()) {
@@ -100,8 +97,7 @@ void XMLParser::add_coordinates_to_vector(std::string const &input) {
         } else { 
             // neither lat nor lon found in string - do nothing
         }
-        if (lat != 0 && lon != 0)   // bot lat and long were found
-        {
+        if (lat != 0 && lon != 0) {   // bot lat and long were found
             coordinate = {lat, lon};
             _coordinates.push_back(coordinate);
         }

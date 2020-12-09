@@ -15,7 +15,7 @@ In general sportgems is used with `gpx` files like this
 ```
 ./sportgems path/to/file.gpx
 ```
-The resulting output would look as follows
+with the resulting output
 ```
 Hi 👋 from sportgems! Will search for 💎 in ../test/data/running.gpx
 Input track is 10.3661km long - searching for fastest 1km, 2km, 3km, 5km, 10km.
@@ -29,6 +29,7 @@ Found the following gems:
 💎 Fastest 10km: start: 190, end: 6140, velocity: 3.38448 m/s
 ```
 
+## Installation
 In order to do so, you need to clone this repo and build it from sources. How to do this
 is described in depth in the following.
 
@@ -65,11 +66,11 @@ Optional arguments are:
 --help         Prints this help.
 ```
 
-To actually run the parser, run either a demo
+To actually execute the parser, you could either run a demo
 ```
 ./sportgems --demo
 ```
-or use one of the pre-bundled `gpx` files in the test data directory like
+or use one of the pre-bundled `gpx` files, which is located in the test data directory like
 ```
 ./sportgems ../test/data/running.gpx
 ```
@@ -92,27 +93,31 @@ test_helper.h       - custom helper functions for running tests
 test_...cpp         - test file for testing the corresponding source files
 ```
 
-The core algorithm can be depicted as follows
-[](https://i.imgur.com/Jwfyjsk.png)
+The following diagram illustrates how the core algorithm (implemented in `gem_finder.cpp`) works:
+
+<img src="https://i.imgur.com/Jwfyjsk.png" width="500">
 
 
 ## Running the tests
 Sportgems uses [gtest](https://github.com/google/googletest/) for unit testing. However, it is
-possible to run all tests (from the build directory) using
+possible to run all tests (from the build directory) at once, using
 ```
 ctest
 ```
 
-or individual test suites, by executing the compiled binary, e.g.
+or you might run individual test suites by executing the compiled binary, e.g.
 ```
 ./test_geo
+./test_generator
+./test_gem_finder
+./test_parser
 ```
 
 
-## Future Plan
+## Roadmap
 
 On top of the current implementation, it is further planned to
 * parse the sections with highest power (using elevation data)
-* deduce [VO2max](https://en.wikipedia.org/wiki/VO2_max) from activity data using the [estimation method of firstbeat](https://assets.firstbeat.com/firstbeat/uploads/2017/06/white_paper_VO2max_30.6.2017.pdf) with heartbeat and speed data.
-* packaging the sportgem C++ code base into a Python package
-* including the sportgem python package into [workoutizer - a sport workout organizer](https://github.com/fgebhart/workoutizer)
+* deduce [VO2max](https://en.wikipedia.org/wiki/VO2_max) from activity data using the [estimation method of firstbeat](https://assets.firstbeat.com/firstbeat/uploads/2017/06/white_paper_VO2max_30.6.2017.pdf) with heartbeat and speed data
+* packaging the sportgems C++ code base into a Python package
+* including the sportgems python package into [workoutizer - a sport workout organizer](https://github.com/fgebhart/workoutizer)

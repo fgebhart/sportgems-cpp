@@ -74,7 +74,7 @@ Segment XMLParser::parse_file() {
         assert(_times.size() == _elevation.size());
         assert(_times.size() == _coordinates.size());
     }
-    Segment track(_coordinates, _times, _elevation);
+    Segment track(std::move(_coordinates), std::move(_times), std::move(_elevation));
     return track;
 }
 

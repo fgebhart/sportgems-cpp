@@ -71,19 +71,19 @@ int main(int argc, char* argv[]) {
     // find gems in track
     Results results;
     try {
-        results = find_gems(track, DEBUG);
+        results = find_gems(std::move(track), DEBUG);
         if (!results.empty()) {
             print_results(results);
         }
     } catch(const TooLittleDataError& e) {
         std::cerr << e.what() << '\n';
-        return 1;
+        return 2;
     } catch(const TrackTooShortError& e) {
         std::cerr << e.what() << '\n';
-        return 1;
+        return 3;
     } catch(const InconsistentDataError& e) {
         std::cerr << e.what() << '\n';
-        return 1;
+        return 4;
     }
     
     return 0;

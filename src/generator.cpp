@@ -10,7 +10,7 @@ Segment Generator::generate_segment(int length, double velocity, Coordinate star
     Elevation _elevation;
     double coordinates_increment = velocity / 1000;
     double elevation_increment = velocity / 100;
-    double times_increment = 1;  // always increment 1 second
+    double times_increment = 1;  // always increment times by 1 second
     _start_coordinate = {start_c.first + coordinates_increment, start_c.second};
     _start_time = start_t + times_increment;
     _start_elevation = start_e + elevation_increment;
@@ -40,6 +40,7 @@ Segment generate_track(std::vector<double> length_list, std::vector<double> velo
     Segment track;
     Generator gen;
     for (int i = 0; i < velocity_list.size(); i++) {
+        // iteratively build new segments where the end of the current segment is the start for the next segment
         Segment seg = gen.generate_segment(length_list.at(i), velocity_list.at(i), track.end_coordinate, track.end_time, track.end_elevation);
         track = track + seg;
     }

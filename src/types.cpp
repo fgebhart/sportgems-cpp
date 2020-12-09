@@ -2,7 +2,7 @@
 #include "../include/exceptions.h"
 
 
-std::vector<double> operator+(std::vector<double>& v1, const std::vector<double>& v2){
+std::vector<double> operator+(std::vector<double>& v1, const std::vector<double>& v2) {
     v1.insert(v1.end(),v2.begin(),v2.end());
     return v1;
 };

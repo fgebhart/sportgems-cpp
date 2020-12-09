@@ -1,7 +1,7 @@
 #include "../include/gem_finder.h"
 
 
-Results find_gems(Segment& seg, bool debug, std::vector<int> fastest_distance) {
+Results find_gems(Segment seg, bool debug, std::vector<int> fastest_distance) {
     print_segment(seg, debug);
 
     // compute total distance to simplify the algorithm downstream
@@ -30,7 +30,7 @@ Results find_gems(Segment& seg, bool debug, std::vector<int> fastest_distance) {
         }
         // start search_section using multithreading to find the fastest_distance section
         for (int i = 0; i < fastest_distance.size(); i++) {
-            auto handle = std::async(std::launch::async, search_section, seg, fastest_distance[i], debug);
+            std::future<Result> handle = std::async(std::launch::async, search_section, seg, fastest_distance[i], debug);
             results.push_back(handle.get());
         }
     } else {
@@ -69,7 +69,7 @@ std::vector<int> convert_vector_to_meter(const std::vector<int> &input_in_km) {
     return output_in_m;
 }
 
-Result search_section(const Segment& seg, const int fastest_distance, bool debug) {
+Result search_section(const Segment& seg, const int fastest_distance, const bool debug) {
     if (debug) { std::cout << ">>> Searching for fastest " << fastest_distance / 1000 << "km..." << std::endl; }
     Section fastest_sec, curr_sec;
     Result result;

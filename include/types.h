@@ -23,6 +23,12 @@ struct Result {
 
 typedef std::vector<Result> Results;
 
+// append vector v2 to vector v1
+std::vector<double> operator+(std::vector<double>& v1, const std::vector<double>& v2);
+
+// append a vector of coordinates c2 to another vector of coordinates c1
+Coordinates operator+(Coordinates& c1, const Coordinates& c2);
+
 struct Section {
     int start_index = 0;
     int end_index = 0;
@@ -50,10 +56,11 @@ struct Segment {
     double end_elevation = 100.001;
 };
 
+// append two segments
 Segment operator+(Segment &seg1, Segment &seg2);
 
-void print_segment(Segment const &segment, bool debug=true);
+void print_segment(Segment const &segment, const bool debug=true);
 
-void print_results(Results const &results, bool debug=true);
+void print_results(Results const &results, const bool debug=true);
 
 #endif

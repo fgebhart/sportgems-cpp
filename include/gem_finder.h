@@ -12,9 +12,9 @@
 #include "../include/exceptions.h"
 
 
-Results find_gems(Segment& seg, bool debug = false, std::vector<int> fastest = {1000, 2000, 3000, 5000, 10000, 15000, 20000});
+Results find_gems(Segment seg, bool debug = false, std::vector<int> fastest = {1000, 2000, 3000, 5000, 10000, 15000, 20000});
 
-Result search_section(const Segment& seg, const int fastest_distance, bool debug);
+Result search_section(const Segment& seg, const int fastest_distance, const bool debug);
 
 void remove_fastest_distance_if_longer_than_total_distance(std::vector<int> & fastest, double total_distance);
 

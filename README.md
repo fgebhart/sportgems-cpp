@@ -1,6 +1,6 @@
 # sportgems
 
-Sportgems finds the valuable gems 💎 in your tracked sport 🚴 activity!
+Sportgems finds valuable gems 💎 in your tracked sport 🚴 activity!
 
 
 ## What is it?
@@ -15,7 +15,7 @@ In general sportgems is used with `gpx` files like this
 ```
 ./sportgems path/to/file.gpx
 ```
-with the resulting output
+which outputs
 ```
 Hi 👋 from sportgems! Will search for 💎 in ../test/data/running.gpx
 Input track is 10.3661km long - searching for fastest 1km, 2km, 3km, 5km, 10km.
@@ -75,7 +75,8 @@ or use one of the pre-bundled `gpx` files, which is located in the test data dir
 ./sportgems ../test/data/running.gpx
 ```
 This will print out the information on the fastest sections found in the `gpx`
-file, like shown above.
+file, like shown above. Note, that both of the above commands can be paired with the `--debug`
+flag, which will make the output more verbose.
 
 
 ## How does it work?

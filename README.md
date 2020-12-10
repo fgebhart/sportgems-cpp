@@ -7,7 +7,30 @@ Sportgems finds valuable gems 💎 in your tracked sport 🚴 activity!
 Sportgems is a tiny command line interface (CLI) which lets you efficiently parse your 
 activity data. It will search and find your fastest sections. It will determine the start,
 end and average speed of a configurable set of fastest sections, for example the fastest
-1km, 2km and 10km. 
+1km, 2km and 10km.
+
+
+## Udacity Capstone Project Requirements
+Sportgems was developed as part of the [Udacity C++ Nanodegree](https://www.udacity.com/course/c-plus-plus-nanodegree--nd213).
+The requirements of the project are met at the following locations:
+### Loops, Functions, I/O
+* functions: `src/parser.cpp:24,30,41,47,...`
+* for loops: `src/gem_finder.cpp:24,44,54,56,...`
+* while loops: `src/gem_finder.cpp:78; src/parser.cpp:60`
+* I/O: `src/parser.cpp:55-79`
+### Object Oriented Programming
+* classes: `include/parser.h:31; include/generator.h:10`
+* class members: `include/parser.h:32,39; include/generator.h:11,19`
+* initialization lists: `src/parser.cpp:4; src/types.cpp:17`
+* inheritance: `include/exceptions.h:6,13,20`
+* overloading: `include/types.h:42,43,60`
+* template: `include/parser.h:20`
+### Memory Management
+* pass-by-reference: `include/gem_finder.h:17,19,21,23,25,27,29,...`
+* move semantics: `src/main.cpp:74; src/parser.cpp:77`
+### Concurrency
+* multithreading: `src/gem_finder.cpp:33`
+* future: `src/gem_finder.cpp:33,34`
 
 
 ## How to use it?
